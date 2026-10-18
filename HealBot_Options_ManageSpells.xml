@@ -1,0 +1,503 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+    <Script file="HealBot_Options_ManageSpells.lua" />
+
+    <Frame name="HealBot_Options_SpellManager" toplevel="true" frameStrata="DIALOG" movable="true"
+        parent="UIParent" enableMouse="true" hidden="true">
+        <Size>
+            <AbsDimension x="520" y="520" />
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER">
+                <Offset><AbsDimension x="0" y="0" /></Offset>
+            </Anchor>
+        </Anchors>
+        <Backdrop tile="true" bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+            edgeFile="Interface\DialogFrame\UI-DialogBox-Border">
+            <BackgroundInsets>
+                <AbsInset left="11" right="12" top="12" bottom="11" />
+            </BackgroundInsets>
+            <TileSize><AbsValue val="32" /></TileSize>
+            <EdgeSize><AbsValue val="32" /></EdgeSize>
+        </Backdrop>
+
+        <Scripts>
+            <OnMouseDown>HealBot_Options_OnMouseDown(self);</OnMouseDown>
+            <OnMouseUp>HealBot_Options_OnMouseUp(self);</OnMouseUp>
+            <OnDragStart>HealBot_Options_OnDragStart(self);</OnDragStart>
+            <OnDragStop>HealBot_Options_OnDragStop(self);</OnDragStop>
+            <OnShow>HealBot_Options_SpellManager_OnShow();</OnShow>
+        </Scripts>
+
+        <Frames>
+
+            <!-- Close button -->
+            <Button name="HealBot_Options_SpellManager_CloseButton" inherits="UIPanelCloseButton"
+                parent="HealBot_Options_SpellManager">
+                <Size><AbsDimension x="32" y="32" /></Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset><AbsDimension x="-6" y="-6" /></Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+
+            <!-- Title -->
+            <Frame name="HealBot_Options_SpellManager_TitleBar" parent="HealBot_Options_SpellManager">
+                <Size><AbsDimension x="480" y="30" /></Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset><AbsDimension x="16" y="-14" /></Offset>
+                    </Anchor>
+                </Anchors>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString inherits="GameFontNormal" text="Spell Manager">
+                            <Anchors>
+                                <Anchor point="LEFT">
+                                    <Offset><AbsDimension x="0" y="0" /></Offset>
+                                </Anchor>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- Divider line under title -->
+            <Frame name="HealBot_Options_SpellManager_TitleDivider" parent="HealBot_Options_SpellManager">
+                <Size><AbsDimension x="480" y="2" /></Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset><AbsDimension x="16" y="-38" /></Offset>
+                    </Anchor>
+                </Anchors>
+                <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Border"
+                    edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+                    <EdgeSize><AbsValue val="1" /></EdgeSize>
+                    <TileSize><AbsValue val="16" /></TileSize>
+                </Backdrop>
+            </Frame>
+
+            <!-- ═══════════════════════════════════════
+                 LEFT PANEL — spell list + New Spell btn
+            ════════════════════════════════════════ -->
+            <Frame name="HealBot_Options_SpellManager_LeftPanel" parent="HealBot_Options_SpellManager">
+                <Size><AbsDimension x="170" y="450" /></Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset><AbsDimension x="16" y="-46" /></Offset>
+                    </Anchor>
+                </Anchors>
+                <Backdrop tile="true" bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+                    edgeFile="Interface\Tooltips\UI-Tooltip-Border">
+                    <BackgroundInsets>
+                        <AbsInset left="2" right="2" top="2" bottom="2" />
+                    </BackgroundInsets>
+                    <TileSize><AbsValue val="32" /></TileSize>
+                    <EdgeSize><AbsValue val="8" /></EdgeSize>
+                </Backdrop>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString inherits="GameFontNormalSmall" text="Custom Spells">
+                            <Anchors>
+                                <Anchor point="TOPLEFT">
+                                    <Offset><AbsDimension x="8" y="-8" /></Offset>
+                                </Anchor>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+
+                <Frames>
+                    <!-- Scroll frame for spell buttons -->
+                    <ScrollFrame name="HealBot_Options_SpellManager_ScrollFrame"
+                        inherits="UIPanelScrollFrameTemplate">
+                        <Size><AbsDimension x="148" y="390" /></Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset><AbsDimension x="4" y="-22" /></Offset>
+                            </Anchor>
+                        </Anchors>
+                        <ScrollChild>
+                            <Frame name="HealBot_Options_SpellManager_ScrollChild">
+                                <Size><AbsDimension x="148" y="10" /></Size>
+                            </Frame>
+                        </ScrollChild>
+                        <Scripts>
+                            <OnLoad>
+                                self:RegisterEvent("PLAYER_LOGIN")
+                            </OnLoad>
+                            <OnEvent>
+                                if event == "PLAYER_LOGIN" then
+                                    self:UnregisterEvent("PLAYER_LOGIN")
+                                    HealBot_Options_ManageSpells_ScrollFrame_OnSpellsLoad(self)
+                                end
+                            </OnEvent>
+                        </Scripts>
+                    </ScrollFrame>
+
+                    <!-- New Spell button at bottom of left panel -->
+                    <Button name="HealBot_Options_SpellManager_NewSpell_Button"
+                        inherits="GameMenuButtonTemplate" text="+ New Spell">
+                        <Size><AbsDimension x="148" y="24" /></Size>
+                        <Anchors>
+                            <Anchor point="BOTTOMLEFT">
+                                <Offset><AbsDimension x="4" y="6" /></Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>HealBot_Options_SpellManager_NewSpell();</OnClick>
+                        </Scripts>
+                    </Button>
+                </Frames>
+            </Frame>
+
+            <!-- ═══════════════════════════════════════
+                 RIGHT PANEL — detail / edit area
+            ════════════════════════════════════════ -->
+            <Frame name="HealBot_Options_SpellManager_RightPanel" parent="HealBot_Options_SpellManager">
+                <Size><AbsDimension x="302" y="450" /></Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset><AbsDimension x="198" y="-46" /></Offset>
+                    </Anchor>
+                </Anchors>
+                <Backdrop tile="true" bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+                    edgeFile="Interface\Tooltips\UI-Tooltip-Border">
+                    <BackgroundInsets>
+                        <AbsInset left="2" right="2" top="2" bottom="2" />
+                    </BackgroundInsets>
+                    <TileSize><AbsValue val="32" /></TileSize>
+                    <EdgeSize><AbsValue val="8" /></EdgeSize>
+                </Backdrop>
+
+                <Frames>
+
+                    <!-- Spell Name label -->
+                    <Frame name="HealBot_Options_SpellManager_SpellNameLabel">
+                        <Size><AbsDimension x="280" y="16" /></Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset><AbsDimension x="12" y="-12" /></Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <FontString inherits="GameFontNormalSmall" text="Spell Name">
+                                    <Anchors>
+                                        <Anchor point="LEFT" />
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                    </Frame>
+
+                    <!-- Spell Name edit box -->
+                    <EditBox name="HealBot_Options_SpellManager_SpellName"
+                        autoFocus="false" inherits="InputBoxTemplate">
+                        <Size><AbsDimension x="276" y="28" /></Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset><AbsDimension x="12" y="-30" /></Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnEnterPressed>self:ClearFocus();</OnEnterPressed>
+                            <OnEscapePressed>self:ClearFocus();</OnEscapePressed>
+                            <OnEditFocusLost>self:HighlightText(0, 0);</OnEditFocusLost>
+                            <OnEditFocusGained>self:HighlightText();</OnEditFocusGained>
+                        </Scripts>
+                    </EditBox>
+
+                    <!-- Type label -->
+                    <Frame name="HealBot_Options_SpellManager_TypeLabel">
+                        <Size><AbsDimension x="280" y="16" /></Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset><AbsDimension x="12" y="-68" /></Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <FontString inherits="GameFontNormalSmall" text="Type">
+                                    <Anchors>
+                                        <Anchor point="LEFT" />
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                    </Frame>
+
+                    <!-- Selected type display (hidden, used for tracking) -->
+                    <Frame name="HealBot_Options_SpellManager_SelectedType" hidden="true">
+                        <Scripts>
+                            <OnLoad>
+                                self.selectedType = 1
+                            </OnLoad>
+                        </Scripts>
+                    </Frame>
+
+                    <!-- Type tab: Spell -->
+                    <Button name="HealBot_Options_SpellManager_Tab_Spell"
+                        inherits="GameMenuButtonTemplate" text="Spell">
+                        <Size><AbsDimension x="88" y="24" /></Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset><AbsDimension x="12" y="-86" /></Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>HealBot_Options_SpellManager_SelectType(1);</OnClick>
+                        </Scripts>
+                    </Button>
+
+                    <!-- Type tab: Dispell -->
+                    <Button name="HealBot_Options_SpellManager_Tab_Dispell"
+                        inherits="GameMenuButtonTemplate" text="Dispell">
+                        <Size><AbsDimension x="88" y="24" /></Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset><AbsDimension x="104" y="-86" /></Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>HealBot_Options_SpellManager_SelectType(2);</OnClick>
+                        </Scripts>
+                    </Button>
+
+                    <!-- Type tab: Buff -->
+                    <Button name="HealBot_Options_SpellManager_Tab_Buff"
+                        inherits="GameMenuButtonTemplate" text="Buff">
+                        <Size><AbsDimension x="88" y="24" /></Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset><AbsDimension x="196" y="-86" /></Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>HealBot_Options_SpellManager_SelectType(3);</OnClick>
+                        </Scripts>
+                    </Button>
+
+                    <!-- Options section label -->
+                    <Frame name="HealBot_Options_SpellManager_OptionsLabel">
+                        <Size><AbsDimension x="280" y="16" /></Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset><AbsDimension x="12" y="-124" /></Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <FontString inherits="GameFontNormalSmall" text="Options">
+                                    <Anchors>
+                                        <Anchor point="LEFT" />
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                    </Frame>
+
+                    <!-- Options box background -->
+                    <Frame name="HealBot_Options_SpellManager_OptionsBox">
+                        <Size><AbsDimension x="276" y="120" /></Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset><AbsDimension x="12" y="-142" /></Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Backdrop tile="true" bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+                            edgeFile="Interface\Tooltips\UI-Tooltip-Border">
+                            <BackgroundInsets>
+                                <AbsInset left="2" right="2" top="2" bottom="2" />
+                            </BackgroundInsets>
+                            <TileSize><AbsValue val="32" /></TileSize>
+                            <EdgeSize><AbsValue val="6" /></EdgeSize>
+                        </Backdrop>
+
+                        <Frames>
+
+                            <!-- Spell options: Can Resurrect -->
+                            <CheckButton name="HealBot_Options_SpellManager_CanResurect"
+                                inherits="UICheckButtonTemplate" hidden="false">
+                                <Size><AbsDimension x="24" y="24" /></Size>
+                                <Anchors>
+                                    <Anchor point="TOPLEFT">
+                                        <Offset><AbsDimension x="8" y="-10" /></Offset>
+                                    </Anchor>
+                                </Anchors>
+                                <Layers>
+                                    <Layer level="OVERLAY">
+                                        <FontString inherits="GameFontNormalSmall" text="Can Resurrect">
+                                            <Anchors>
+                                                <Anchor point="LEFT">
+                                                    <Offset><AbsDimension x="26" y="0" /></Offset>
+                                                </Anchor>
+                                            </Anchors>
+                                        </FontString>
+                                    </Layer>
+                                </Layers>
+                                <Scripts>
+                                    <OnClick>Healbot_Options_SpellManager_CanResurect_Click(self)</OnClick>
+                                </Scripts>
+                            </CheckButton>
+
+                            <!-- Spell options: Show on HUD -->
+                            <CheckButton name="HealBot_Options_SpellManager_ShowOnHUD"
+                                inherits="UICheckButtonTemplate" hidden="false">
+                                <Size><AbsDimension x="24" y="24" /></Size>
+                                <Anchors>
+                                    <Anchor point="TOPLEFT">
+                                        <Offset><AbsDimension x="8" y="-38" /></Offset>
+                                    </Anchor>
+                                </Anchors>
+                                <Layers>
+                                    <Layer level="OVERLAY">
+                                        <FontString inherits="GameFontNormalSmall" text="Show on HUD">
+                                            <Anchors>
+                                                <Anchor point="LEFT">
+                                                    <Offset><AbsDimension x="26" y="0" /></Offset>
+                                                </Anchor>
+                                            </Anchors>
+                                        </FontString>
+                                    </Layer>
+                                </Layers>
+                                <Scripts>
+                                    <OnClick>Healbot_Options_SpellManager_ShowOnHUD_Click(self)</OnClick>
+                                </Scripts>
+                            </CheckButton>
+
+                            <!-- Dispell options frame (shown only for Dispell type) -->
+                            <Frame name="Healbot_Options_SpellManager_Dispells_F" hidden="true">
+                                <Size><AbsDimension x="260" y="110" /></Size>
+                                <Anchors>
+                                    <Anchor point="TOPLEFT">
+                                        <Offset><AbsDimension x="8" y="-8" /></Offset>
+                                    </Anchor>
+                                </Anchors>
+                                <Frames>
+
+                                    <CheckButton name="HealBot_Options_SpellManager_Dispell_Poison"
+                                        inherits="UICheckButtonTemplate">
+                                        <Size><AbsDimension x="24" y="24" /></Size>
+                                        <Anchors>
+                                            <Anchor point="TOPLEFT">
+                                                <Offset><AbsDimension x="0" y="-4" /></Offset>
+                                            </Anchor>
+                                        </Anchors>
+                                        <Layers>
+                                            <Layer level="OVERLAY">
+                                                <FontString inherits="GameFontNormalSmall" text="Poison">
+                                                    <Anchors>
+                                                        <Anchor point="LEFT">
+                                                            <Offset><AbsDimension x="26" y="0" /></Offset>
+                                                        </Anchor>
+                                                    </Anchors>
+                                                </FontString>
+                                            </Layer>
+                                        </Layers>
+                                    </CheckButton>
+
+                                    <CheckButton name="HealBot_Options_SpellManager_Dispell_Curse"
+                                        inherits="UICheckButtonTemplate">
+                                        <Size><AbsDimension x="24" y="24" /></Size>
+                                        <Anchors>
+                                            <Anchor point="TOPLEFT">
+                                                <Offset><AbsDimension x="130" y="-4" /></Offset>
+                                            </Anchor>
+                                        </Anchors>
+                                        <Layers>
+                                            <Layer level="OVERLAY">
+                                                <FontString inherits="GameFontNormalSmall" text="Curse">
+                                                    <Anchors>
+                                                        <Anchor point="LEFT">
+                                                            <Offset><AbsDimension x="26" y="0" /></Offset>
+                                                        </Anchor>
+                                                    </Anchors>
+                                                </FontString>
+                                            </Layer>
+                                        </Layers>
+                                    </CheckButton>
+
+                                    <CheckButton name="HealBot_Options_SpellManager_Dispell_Magic"
+                                        inherits="UICheckButtonTemplate">
+                                        <Size><AbsDimension x="24" y="24" /></Size>
+                                        <Anchors>
+                                            <Anchor point="TOPLEFT">
+                                                <Offset><AbsDimension x="0" y="-34" /></Offset>
+                                            </Anchor>
+                                        </Anchors>
+                                        <Layers>
+                                            <Layer level="OVERLAY">
+                                                <FontString inherits="GameFontNormalSmall" text="Magic">
+                                                    <Anchors>
+                                                        <Anchor point="LEFT">
+                                                            <Offset><AbsDimension x="26" y="0" /></Offset>
+                                                        </Anchor>
+                                                    </Anchors>
+                                                </FontString>
+                                            </Layer>
+                                        </Layers>
+                                    </CheckButton>
+
+                                    <CheckButton name="HealBot_Options_SpellManager_Dispell_Disese"
+                                        inherits="UICheckButtonTemplate">
+                                        <Size><AbsDimension x="24" y="24" /></Size>
+                                        <Anchors>
+                                            <Anchor point="TOPLEFT">
+                                                <Offset><AbsDimension x="130" y="-34" /></Offset>
+                                            </Anchor>
+                                        </Anchors>
+                                        <Layers>
+                                            <Layer level="OVERLAY">
+                                                <FontString inherits="GameFontNormalSmall" text="Disease">
+                                                    <Anchors>
+                                                        <Anchor point="LEFT">
+                                                            <Offset><AbsDimension x="26" y="0" /></Offset>
+                                                        </Anchor>
+                                                    </Anchors>
+                                                </FontString>
+                                            </Layer>
+                                        </Layers>
+                                    </CheckButton>
+
+                                </Frames>
+                            </Frame>
+
+                        </Frames>
+                    </Frame>
+
+                    <!-- Save button -->
+                    <Button name="HealBot_Options_SpellManager_AddSpell_Button"
+                        inherits="GameMenuButtonTemplate" text="Save">
+                        <Size><AbsDimension x="134" y="26" /></Size>
+                        <Anchors>
+                            <Anchor point="BOTTOMLEFT">
+                                <Offset><AbsDimension x="12" y="12" /></Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>HealBot_Options_SpellManager_CreateOrSaveSpell();</OnClick>
+                        </Scripts>
+                    </Button>
+
+                    <!-- Delete button -->
+                    <Button name="HealBot_Options_SpellManager_DeleteSpell_Button"
+                        inherits="GameMenuButtonTemplate" text="Delete">
+                        <Size><AbsDimension x="134" y="26" /></Size>
+                        <Anchors>
+                            <Anchor point="BOTTOMRIGHT">
+                                <Offset><AbsDimension x="-4" y="12" /></Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>HealBot_Options_SpellManager_DeleteSpell();</OnClick>
+                        </Scripts>
+                    </Button>
+
+                </Frames>
+            </Frame>
+
+        </Frames>
+    </Frame>
+</Ui>
