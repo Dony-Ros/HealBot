@@ -85,8 +85,8 @@ HEALBOT_CLASS_SPELLS = {
         Venomancer_Gift_of_Shadra       = GetSpellInfo(502968) or "Gift of Shadra",
         --ID 502947 Vizier's Gift
         Venomancer_Viziers_Gift         = GetSpellInfo(502947) or "Vizier's Gift",
-        --ID 502939 Shadra's Vigil
-        Venomancer_Shadras_Vigil        = GetSpellInfo(502939) or "Shadra's Vigil",
+        --ID 800870 Shadra's Prayer
+        Shadras_Prayer                  = GetSpellInfo(800870) or "Shadra's Prayer",
         --ID 800874 Shadra's Favor
         Venomancer_Shadras_Favor        = GetSpellInfo(800874) or "Shadra's Favor",
         --ID 805731 Fang Venom: Creeping Poison
@@ -94,10 +94,15 @@ HEALBOT_CLASS_SPELLS = {
         --ID 803177 Shadra's Wisdom
         Venomancer_Shadras_Wisdom       = GetSpellInfo(803177) or "Shadra's Wisdom",
         --ID 800905 Antivenom
-        Venomancer_Antivenom            = GetSpellInfo(800905) or "Antivenom",
+        Antivenom                       = GetSpellInfo(800905) or "Antivenom",
         --ID 520681 Prayer Beads
         Venomancer_Prayer_Beads         = GetSpellInfo(520681) or "Prayer Beads",
-
+        --ID 800899 Mending Mist
+        Mending_Mist                    = GetSpellInfo(800899) or "Mending Mist",
+        --ID 13977921 Emerald Veil
+        Emerald_Veil                    = GetSpellInfo(13977921) or "Emerald Veil",
+        --ID 504342 Alkahest
+        Alkahest                        = GetSpellInfo(504342) or "Alkahest",
     },
     [HEALBOT_WITCH_DOCTOR] = {
         --ID 500017 Serpent Beam

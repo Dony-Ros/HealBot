@@ -150,7 +150,7 @@ local _healbotSetSpell_T = {
         ['r'] = HEALBOT_CLASS_SPELLS[HEALBOT_SUNCLERIC].SunCleric_Revivify
     },
     [HEALBOT_VENOMANCER] = {
-        ['h'] = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Shadras_Vigil,
+        ['h'] = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Shadras_Prayer,
         ['b'] = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Shadras_Wisdom,
         ['d'] = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Dark_Barrier,
         ['r'] = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Prayer_Beads
@@ -555,7 +555,7 @@ function HealBot_Action_SetrSpell()
         HealBot_dSpell = HEALBOT_CLASS_SPELLS[HEALBOT_SUNCLERIC].SunCleric_Sanctify
         HealBot_rSpell = HEALBOT_CLASS_SPELLS[HEALBOT_SUNCLERIC].SunCleric_Revivify
     elseif HealBot_PlayerClass_ER == HEALBOT_VENOMANCER then
-        HealBot_hSpell = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Shadras_Vigil
+        HealBot_hSpell = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Shadras_Prayer
         HealBot_bSpell = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Shadras_Wisdom
         HealBot_dSpell = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Dark_Barrier
         HealBot_rSpell = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Prayer_Beads

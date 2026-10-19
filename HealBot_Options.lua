@@ -649,15 +649,16 @@ local HealBot_Options_SelectHealSpellsCombo_List_V2 = {
         HEALBOT_CLASS_SPELLS[HEALBOT_TINKER].Nanobot_Reconstruction,
         HEALBOT_CLASS_SPELLS[HEALBOT_TINKER].Nanobot_Barrier,
         HEALBOT_CLASS_SPELLS[HEALBOT_TINKER].Magic_Cleanser_4000X,
-
-
     },
     [HEALBOT_VENOMANCER] = {
-
-        HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Shadras_Vigil,
+        HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Shadras_Prayer,
         HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Dark_Barrier,
         HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Gift_of_Shadra,
         HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Viziers_Gift,
+        HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Mending_Mist,
+        HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Antivenom,
+        HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Emerald_Veil,
+        HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Alkahest,
     },
     [HEALBOT_REAPER] = {},
     [HEALBOT_PRIMALIST] = {
@@ -680,12 +681,9 @@ local HealBot_Options_SelectHealSpellsCombo_List_V2 = {
         HEALBOT_CLASS_SPELLS[HEALBOT_SUNCLERIC].SunCleric_Devotion,
         HEALBOT_CLASS_SPELLS[HEALBOT_SUNCLERIC].Blightbreaker,
         HEALBOT_CLASS_SPELLS[HEALBOT_SUNCLERIC].Lightward,
-
     },
     [HEALBOT_WITCHHUNTER] = {},
     [HEALBOT_BARBARIAN] = {},
-
-
 }
 local HealBot_Options_BuffTxt_List = {
     HEALBOT_WORDS_NONE,
@@ -808,7 +806,7 @@ local HealBot_Debuff_Spells = {
 
     },
     [HEALBOT_VENOMANCER] = {
-        HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Antivenom,
+        HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Antivenom,
     },
     [HEALBOT_REAPER] = {
 
@@ -922,7 +920,7 @@ local HealBot_Debuff_Types = {
     [HEALBOT_CLASS_SPELLS[HEALBOT_WITCH_DOCTOR].WichDoctor_Magicbreak] = {
         HEALBOT_MAGIC_en,
     },
-    [HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Antivenom] = {
+    [HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Antivenom] = {
         HEALBOT_POISON_en
     },
     [HEALBOT_CLASS_SPELLS[HEALBOT_WITCH_DOCTOR].WichDoctor_Allcure_Elixir] = {
@@ -4009,7 +4007,7 @@ local HealBot_Options_SelectOtherSpellsCombo_List = {
     [HEALBOT_TINKER] = {},
     [HEALBOT_VENOMANCER] = {
         HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Prayer_Beads,
-        HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Antivenom,
+        HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Antivenom,
     },
     [HEALBOT_REAPER] = {},
     [HEALBOT_PRIMALIST] = {
