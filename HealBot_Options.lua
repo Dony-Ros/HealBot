@@ -709,6 +709,10 @@ local HealBot_Options_SelectHealSpellsCombo_List_V2 = {
     [HEALBOT_BARBARIAN] = {},
     [HEALBOT_CULTIST] = {
         HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Void_Shield,
+        HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Forbidden_Ritual,
+        HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Ritual_of_Awakening,
+        HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Gaze_of_C_Thun,
+        HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Eldritch_Mending,
     }
 }
 local HealBot_Options_BuffTxt_List = {

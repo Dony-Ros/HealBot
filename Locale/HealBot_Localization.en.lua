@@ -217,7 +217,7 @@ HEALBOT_CLASS_SPELLS                     = {
         Return_to_Life          = GetSpellInfo(801794) or "Return to Life",
         Venomshake              = GetSpellInfo(804155) or "Venomshake",
         Boon_of_the_Bear        = GetSpellInfo(500939) or "Boon of the Bear",
-        
+
     },
     [HEALBOT_HERO] = {
         Nature_Curse = GetSpellInfo(80573) or "Nature's Curse",
@@ -239,6 +239,14 @@ HEALBOT_CLASS_SPELLS                     = {
     [HEALBOT_CULTIST] = {
         --ID 500715 Void Shield
         Void_Shield = GetSpellInfo(500715) or "Void Shield",
+        --ID 500711 Eldritch Mending (heal)
+        Eldritch_Mending = GetSpellInfo(500711) or "Eldritch Mending",
+        --ID 500110 Gaze of C'Thun (heal)
+        Gaze_of_C_Thun = GetSpellInfo(500110) or "Gaze of C'Thun",
+        --ID 801791 Ritual of Awakening (Ress)
+        Ritual_of_Awakening = GetSpellInfo(801791) or "Ritual of Awakening",
+        --ID 502267 Forbidden Ritual (shield absorve)
+        Forbidden_Ritual = GetSpellInfo(502267) or "Forbidden Ritual",
     },
     [HEALBOT_PYROMANCER] = {
         --ID 800818 Ember Touch
@@ -294,7 +302,8 @@ HEALBOT_CLASS_SPELLS                     = {
         Fabric_of_Time = GetSpellInfo(570177) or "Fabric of Time",
         --ID 804495 Resynchronize (mass ress)
         Resynchronize = GetSpellInfo(804495) or "Resynchronize",
-    }
+    },
+
 }
 --ID 272661 Mending Tide
 Mending_Tide                             = GetSpellInfo(272661) or "Mending Tide";

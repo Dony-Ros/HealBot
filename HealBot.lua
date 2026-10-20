@@ -216,6 +216,8 @@ local Resurection_Spells = {
     HEALBOT_CLASS_SPELLS[HEALBOT_TINKER].Defibrilate,
     HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Phoenix_Rebirth,
     HEALBOT_CLASS_SPELLS[HEALBOT_CHRONOMANCER].Do_Over,
+    HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Ritual_of_Awakening,
+    
     
 }
 local uscSpell, uscName, uscGUID = nil, nil, nil

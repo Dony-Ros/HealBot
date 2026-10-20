@@ -166,7 +166,9 @@ local _healbotSetSpell_T = {
         ['r'] = HEALBOT_CLASS_SPELLS[HEALBOT_TINKER].Defibrilate,
     },
     [HEALBOT_CULTIST] = {
-        ['h'] = HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Void_Shield,
+        ['h'] = HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Eldritch_Mending,
+        ['r'] = HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Ritual_of_Awakening,
+        ['b'] = HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Forbidden_Ritual,
     },
     [HEALBOT_PYROMANCER] ={
         ['h'] = HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Cinderheart,
@@ -562,6 +564,11 @@ function HealBot_Action_SetrSpell()
         HealBot_bSpell = HEALBOT_CLASS_SPELLS[HEALBOT_SUNCLERIC].SunCleric_Bless
         HealBot_dSpell = HEALBOT_CLASS_SPELLS[HEALBOT_SUNCLERIC].SunCleric_Sanctify
         HealBot_rSpell = HEALBOT_CLASS_SPELLS[HEALBOT_SUNCLERIC].SunCleric_Revivify
+    elseif HealBot_PlayerClass_ER == HEALBOT_CULTIST then
+        HealBot_hSpell = HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Eldritch_Mending
+        HealBot_bSpell = HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Void_Shield
+        HealBot_dSpell = HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Forbidden_Ritual
+        HealBot_rSpell = HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Ritual_of_Awakening
     elseif HealBot_PlayerClass_ER == HEALBOT_VENOMANCER then
         HealBot_hSpell = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Shadras_Prayer
         HealBot_bSpell = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Shadras_Wisdom

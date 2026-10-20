@@ -1688,6 +1688,8 @@ function HealBot_Init_SmartCast()
         SmartCast_Res = HEALBOT_CLASS_SPELLS[HEALBOT_WITCH_DOCTOR].WichDoctor_Reclaim_Soul
     elseif HealBot_PlayerClass_ER == HEALBOT_VENOMANCER then
         SmartCast_Res = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Prayer_Beads
+    elseif HealBot_PlayerClass_ER == HEALBOT_CULTIST then
+        SmartCast_Res = HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Ritual_of_Awakening
     elseif HealBot_PlayerClass_ER == HEALBOT_PRIMALIST then
         SmartCast_Res = HEALBOT_CLASS_SPELLS[HEALBOT_PRIMALIST].Return_to_Life;
     elseif HealBot_PlayerClass_ER == HEALBOT_PYROMANCER then

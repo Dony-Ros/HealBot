@@ -1472,6 +1472,7 @@ HealBot_GlobalsDefaults = {
         [HEALBOT_BARBARIAN] = {},
         [HEALBOT_CULTIST] = {
             [HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Void_Shield] = 2,
+            [HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Forbidden_Ritual] = 2,
         },
         [HEALBOT_PYROMANCER] = {
             [HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Ember_Touch] = 2,
