@@ -6,6 +6,29 @@ local CanRess = false
 local ShowOnHUD = false
 local CurrentSpellType = 1 -- 1=Spell, 2=Dispell, 3=Buff
 
+local SpellTypeNames = { "Spell", "Dispell", "Buff" }
+
+local function SetTypeDisplay(typeId)
+    local dd = _G["HealBot_Options_SpellManager_TypeDropDown"]
+    if dd then
+        _G[dd:GetName() .. "Text"]:SetText(SpellTypeNames[typeId] or "")
+    end
+end
+
+function HealBot_Options_SpellManager_TypeDropDown_OnLoad(self)
+    UIDropDownMenu_Initialize(self, function(frame, level)
+        for id, text in ipairs(SpellTypeNames) do
+            local info = {}
+            info.text = text
+            info.checked = (CurrentSpellType == id)
+            info.func = function() HealBot_Options_SpellManager_SelectType(id) end
+            UIDropDownMenu_AddButton(info, level)
+        end
+    end)
+    UIDropDownMenu_SetWidth(self, 200)
+    SetTypeDisplay(CurrentSpellType)
+end
+
 function HealBot_Options_ManageSpells(self)
     if _G["HealBot_Options_SpellManager"] then
         _G["HealBot_Options_SpellManager"]:Show()
@@ -15,6 +38,7 @@ end
 function HealBot_Options_SpellManager_OnShow()
     -- Reset the selected type to Spell when showing
     CurrentSpellType = 1
+    SetTypeDisplay(1)
     HealBot_Options_SpellManager_UpdateOptionsVisibility(1)
 end
 
@@ -40,6 +64,7 @@ end
 
 function HealBot_Options_SpellManager_SelectType(typeId)
     CurrentSpellType = typeId
+    SetTypeDisplay(typeId)
     HealBot_Options_SpellManager_UpdateOptionsVisibility(typeId)
 end
 
@@ -51,8 +76,8 @@ function HealBot_Options_SpellManager_NewSpell()
     -- Clear all fields for a new spell
     Spell_NameEditBox:SetText("")
     
-    -- Reset to Spell type (1)
     CurrentSpellType = 1
+    SetTypeDisplay(1)
     HealBot_Options_SpellManager_UpdateOptionsVisibility(1)
     
     -- Reset checkboxes
@@ -64,6 +89,7 @@ function HealBot_Options_SpellManager_NewSpell()
     _G["HealBot_Options_SpellManager_Dispell_Curse"]:SetChecked(false)
     _G["HealBot_Options_SpellManager_Dispell_Magic"]:SetChecked(false)
     _G["HealBot_Options_SpellManager_Dispell_Disese"]:SetChecked(false)
+    _G["HealBot_Options_SpellManager_Dispell_Bleed"]:SetChecked(false)
     
     -- Reset variables
     CanRess = false
@@ -71,8 +97,8 @@ function HealBot_Options_SpellManager_NewSpell()
 end
 
 function HealBot_Options_SpellManager_DeleteSpell()
-    local spellName = Spell_NameEditBox:GetText()
-    if not spellName or spellName == "" then
+    local spellName = tonumber(Spell_NameEditBox:GetText())
+    if not spellName then
         print("No spell selected to delete")
         return
     end
@@ -133,15 +159,17 @@ end
 function healbot_options_ManageSpells_SelectSpell(SpellTable)
     -- Update the selected type
     CurrentSpellType = SpellTable.SpellType
+    SetTypeDisplay(CurrentSpellType)
     HealBot_Options_SpellManager_UpdateOptionsVisibility(CurrentSpellType)
 
-    Spell_NameEditBox:SetText(SpellTable.Spell)
+    Spell_NameEditBox:SetText(SpellTable.SpellID or "")
     
     if SpellTable.SpellType == 2 then -- Dispell
         _G["HealBot_Options_SpellManager_Dispell_Poison"]:SetChecked(SpellTable.Dispell_Poison or false)
         _G["HealBot_Options_SpellManager_Dispell_Curse"]:SetChecked(SpellTable.Dispell_Curse or false)
         _G["HealBot_Options_SpellManager_Dispell_Magic"]:SetChecked(SpellTable.Dispell_Magic or false)
         _G["HealBot_Options_SpellManager_Dispell_Disese"]:SetChecked(SpellTable.Dispell_Disese or false)
+        _G["HealBot_Options_SpellManager_Dispell_Bleed"]:SetChecked(SpellTable.Dispell_Bleed or false)
     elseif SpellTable.SpellType == 1 then -- Spell
         CanRess = SpellTable.CanResurect or false
         _G["HealBot_Options_SpellManager_CanResurect"]:SetChecked(CanRess)
@@ -156,15 +184,15 @@ function healbot_options_ManageSpells_SelectSpell(SpellTable)
 end
 
 function HealBot_Options_SpellManager_CreateOrSaveSpell()
-    local spellName = Spell_NameEditBox:GetText()
-    if not spellName or spellName == "" then
-        print("Please enter a spell name")
+    local spellName = tonumber(Spell_NameEditBox:GetText())
+    if not spellName then
+        print("Please enter a spell ID")
         return
     end
     
     local spellinf = GetSpellInfo(spellName)
     if not spellinf then
-        print("Invalid Spell: " .. spellName)
+        print("Invalid Spell ID: " .. spellName)
         return
     end
     
@@ -177,6 +205,7 @@ function HealBot_Options_SpellManager_CreateOrSaveSpell()
     if isNew then
         Healbot_Custom_SpellManager[spellName] = {}
         Healbot_Custom_SpellManager[spellName].Spell = spellinf
+        Healbot_Custom_SpellManager[spellName].SpellID = spellName
         CreateCustomSpellButton(Healbot_Custom_SpellManager[spellName], ScrollViewContent)
     end
 
@@ -200,7 +229,7 @@ function HealBot_Options_SpellManager_CreateOrSaveSpell()
         Healbot_Custom_SpellManager[spellName].Dispell_Curse = _G["HealBot_Options_SpellManager_Dispell_Curse"]:GetChecked()
         Healbot_Custom_SpellManager[spellName].Dispell_Disese = _G["HealBot_Options_SpellManager_Dispell_Disese"]:GetChecked()
         Healbot_Custom_SpellManager[spellName].Dispell_Magic = _G["HealBot_Options_SpellManager_Dispell_Magic"]:GetChecked()
-        --Healbot_Custom_SpellManager[spellName].Dispell_Bleed = _G["HealBot_Options_SpellManager_Dispell_Bleed"]:GetChecked()
+        Healbot_Custom_SpellManager[spellName].Dispell_Bleed = _G["HealBot_Options_SpellManager_Dispell_Bleed"]:GetChecked()
         
         -- Clear spell-specific settings
         Healbot_Custom_SpellManager[spellName].CanResurect = nil
@@ -220,7 +249,7 @@ function HealBot_Options_SpellManager_CreateOrSaveSpell()
 
     -- Call AddNewSpell to register with the HealBot system
     Healbot_Options_SpellManager_AddNewSpell(Healbot_Custom_SpellManager[spellName])
-    print("Spell saved: " .. spellName)
+    print("Spell saved: " .. spellinf .. " (" .. spellName .. ")")
 end
 
 function HealBot_Options_ManageSpells_ScrollFrame_OnSpellsLoad(self)
