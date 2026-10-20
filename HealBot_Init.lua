@@ -64,7 +64,7 @@ function HealBot_Init_SetSpec()
         [HEALBOT_RUNEMASTER] = { [1] = HEALBOT_BALANCE, [2] = HEALBOT_FERAL, [3] = HEALBOT_RESTORATION },
         [HEALBOT_SUNCLERIC] = { [1] = HEALBOT_BALANCE, [2] = HEALBOT_FERAL, [3] = HEALBOT_RESTORATION },
         [HEALBOT_WITCHHUNTER] = { [1] = HEALBOT_BALANCE, [2] = HEALBOT_FERAL, [3] = HEALBOT_RESTORATION },
-        [HEALBOT_BARBARIAN] =  { [1] = HEALBOT_BALANCE, [2] = HEALBOT_FERAL, [3] = HEALBOT_RESTORATION },
+        [HEALBOT_BARBARIAN] = { [1] = HEALBOT_BALANCE, [2] = HEALBOT_FERAL, [3] = HEALBOT_RESTORATION },
 
 
 
@@ -1679,8 +1679,7 @@ function HealBot_Init_Spells_Defaults()
 end
 
 function HealBot_Init_SmartCast()
-
-    if Healbot_SmartCastCustom_Ress[HealBot_PlayerClass_ER]then
+    if Healbot_SmartCastCustom_Ress[HealBot_PlayerClass_ER] then
         SmartCast_Res = Healbot_SmartCastCustom_Ress[HealBot_PlayerClass_ER];
     end
     if HealBot_PlayerClass_ER == HEALBOT_SUNCLERIC then
@@ -1691,6 +1690,10 @@ function HealBot_Init_SmartCast()
         SmartCast_Res = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Prayer_Beads
     elseif HealBot_PlayerClass_ER == HEALBOT_PRIMALIST then
         SmartCast_Res = HEALBOT_CLASS_SPELLS[HEALBOT_PRIMALIST].Return_to_Life;
+    elseif HealBot_PlayerClass_ER == HEALBOT_PYROMANCER then
+        SmartCast_Res = HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Phoenix_Rebirth;
+    elseif HealBot_PlayerClass_ER == HEALBOT_CHRONOMANCER then
+        SmartCast_Res = HEALBOT_CLASS_SPELLS[HEALBOT_CHRONOMANCER].Do_Over;
     elseif HealBot_PlayerClass_ER == HEALBOT_DRUID then
         SmartCast_Res = HEALBOT_REVIVE;
     elseif HealBot_PlayerClass_ER == HEALBOT_PALADIN then

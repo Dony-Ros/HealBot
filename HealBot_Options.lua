@@ -246,13 +246,18 @@ local HealBot_Buff_Spells_Total_List = {
 
     },
     [HEALBOT_CHRONOMANCER] = {
-
+        HEALBOT_CLASS_SPELLS[HEALBOT_CHRONOMANCER].Nozdormus_Wisdom,
+        HEALBOT_CLASS_SPELLS[HEALBOT_CHRONOMANCER].Temporal_Resilience,
     },
     [HEALBOT_NECROMANCER] = {
 
     },
     [HEALBOT_PYROMANCER] = {
-
+        HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Magma_Skin,
+        HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Seal_of_Al_ar,
+        HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Greater_Seal_of_Al_ar,
+        HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Seal_of_Alysrazor,
+        HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Greater_Seal_of_Alysrazor,
     },
     [HEALBOT_CULTIST] = {
 
@@ -639,10 +644,28 @@ local HealBot_Options_SelectHealSpellsCombo_List_V2 = {
     [HEALBOT_MONK] = {},
 
     [HEALBOT_RANGER] = {},
-    [HEALBOT_CHRONOMANCER] = {},
+    [HEALBOT_CHRONOMANCER] =
+    {
+        HEALBOT_CLASS_SPELLS[HEALBOT_CHRONOMANCER].Reverse_Wound,
+        HEALBOT_CLASS_SPELLS[HEALBOT_CHRONOMANCER].Accelerated_Recovery,
+        HEALBOT_CLASS_SPELLS[HEALBOT_CHRONOMANCER].Correct_the_Mistake,
+        HEALBOT_CLASS_SPELLS[HEALBOT_CHRONOMANCER].Fortify_Timeline,
+        HEALBOT_CLASS_SPELLS[HEALBOT_CHRONOMANCER].Fabric_of_Time,
+        HEALBOT_CLASS_SPELLS[HEALBOT_CHRONOMANCER].Do_Over,
+        HEALBOT_CLASS_SPELLS[HEALBOT_CHRONOMANCER].Resynchronize,
+        HEALBOT_CLASS_SPELLS[HEALBOT_CHRONOMANCER].Roll_Back,
+
+    },
     [HEALBOT_NECROMANCER] = {},
-    [HEALBOT_PYROMANCER] = {},
-    [HEALBOT_CULTIST] = {},
+    [HEALBOT_PYROMANCER] = {
+        HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Ember_Touch,
+        HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Cinderheart,
+        HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Phoenix_Rebirth,
+        HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Kindle,
+        HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Reborn_from_Ash,
+        HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Cauterize,
+
+    },
     [HEALBOT_STARCALLER] = {},
     [HEALBOT_TINKER] = {
         HEALBOT_CLASS_SPELLS[HEALBOT_TINKER].Repair_Shot,
@@ -684,6 +707,9 @@ local HealBot_Options_SelectHealSpellsCombo_List_V2 = {
     },
     [HEALBOT_WITCHHUNTER] = {},
     [HEALBOT_BARBARIAN] = {},
+    [HEALBOT_CULTIST] = {
+        HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Void_Shield,
+    }
 }
 local HealBot_Options_BuffTxt_List = {
     HEALBOT_WORDS_NONE,
@@ -786,13 +812,13 @@ local HealBot_Debuff_Spells = {
 
     },
     [HEALBOT_CHRONOMANCER] = {
-
+        HEALBOT_CLASS_SPELLS[HEALBOT_CHRONOMANCER].Roll_Back
     },
     [HEALBOT_NECROMANCER] = {
 
     },
     [HEALBOT_PYROMANCER] = {
-
+        HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Cauterize,
     },
     [HEALBOT_CULTIST] = {
 
@@ -802,8 +828,6 @@ local HealBot_Debuff_Spells = {
     },
     [HEALBOT_TINKER] = {
         HEALBOT_CLASS_SPELLS[HEALBOT_TINKER].Magic_Cleanser_4000X,
-
-
     },
     [HEALBOT_VENOMANCER] = {
         HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Antivenom,
@@ -936,20 +960,44 @@ local HealBot_Debuff_Types = {
         HEALBOT_POISON_en,
         HEALBOT_DISEASE_en
     },
-
-
+    [HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Cauterize] = {
+        HEALBOT_BLEED_en,
+    },
+    [HEALBOT_CLASS_SPELLS[HEALBOT_CHRONOMANCER].Roll_Back] = {
+        HEALBOT_POISON_en,
+        HEALBOT_DISEASE_en,
+        HEALBOT_BLEED_en,
+        HEALBOT_MAGIC_en,
+        HEALBOT_CURSE_en
+    }
 }
+
 local HealBot_Racial_Debuff_Spells = {
-    ["Hum"] = {},
-    ["Dwa"] = { HEALBOT_STONEFORM, },
-    ["Nig"] = {},
-    ["Gno"] = {},
-    ["Dra"] = {},
+    ["Human"] = {},
+    ["Dwarf"] = { HEALBOT_STONEFORM, },
+    ["NightElf"] = {},
+    ["Gnome"] = {},
+    ["Draenei"] = {},
     ["Orc"] = {},
-    ["Sco"] = {}, -- Undead
-    ["Tau"] = {},
-    ["Tro"] = {},
-    ["Blo"] = {},
+    ["Scourge"] = {}, -- Undead
+    ["Tauren"] = {},
+    ["Troll"] = {},
+    ["BloodElf"] = {},
+    ["VoidElf"] = {},
+    ["DarkIronDwarf"] = {},
+    ["LightforgedDraenei"] = {},
+    ["Pandaren"] = {},
+    ["Dracthyr"] = {},
+    ["KulTiran"] = {},
+    ["Worgen"] = {},
+    ["Vulpera"] = {},
+    ["Nightborne"] = {},
+    ["ZandalariTroll"] = {},
+    ["Goblin"] = {},
+    ["HighmountainTauren"] = {},
+    ["MagharOrc"] = {},
+    ["Mechagnome"] = {},
+    ["EarthenDwarf"] = {},
 }
 local CPUProfiler = 0
 local tmpDebugThrottle = GetTime()
@@ -3950,11 +3998,9 @@ local HealBot_Options_SelectOtherSpellsCombo_List = {
     },
     [HEALBOT_WARLOCK] = {
         HEALBOT_LIFE_TAP,
-
     },
     [HEALBOT_DEATHKNIGHT] = {
         HEALBOT_HYSTERIA,
-
     },
     [HEALBOT_HERO] = {
 
@@ -4001,7 +4047,11 @@ local HealBot_Options_SelectOtherSpellsCombo_List = {
     [HEALBOT_RANGER] = {},
     [HEALBOT_CHRONOMANCER] = {},
     [HEALBOT_NECROMANCER] = {},
-    [HEALBOT_PYROMANCER] = {},
+    [HEALBOT_PYROMANCER] = {
+        HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Reborn_from_Ash,
+        HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Phoenix_Rebirth,
+        HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Cauterize,
+    },
     [HEALBOT_CULTIST] = {},
     [HEALBOT_STARCALLER] = {},
     [HEALBOT_TINKER] = {},
@@ -4013,15 +4063,11 @@ local HealBot_Options_SelectOtherSpellsCombo_List = {
     [HEALBOT_PRIMALIST] = {
         HEALBOT_CLASS_SPELLS[HEALBOT_PRIMALIST].Return_to_Life,
         HEALBOT_CLASS_SPELLS[HEALBOT_PRIMALIST].Venomshake,
-
-
     },
     [HEALBOT_RUNEMASTER] = {},
     [HEALBOT_SUNCLERIC] = {
         HEALBOT_CLASS_SPELLS[HEALBOT_SUNCLERIC].SunCleric_Sanctify,
         HEALBOT_CLASS_SPELLS[HEALBOT_SUNCLERIC].Shatter_Magic,
-
-
     },
     [HEALBOT_WITCH_DOCTOR] = {
         HEALBOT_CLASS_SPELLS[HEALBOT_WITCH_DOCTOR].WichDoctor_Reclaim_Soul,
@@ -4058,15 +4104,16 @@ function HealBot_Options_SelectOtherSpellsCombo_DropDown()
         hbHelpOtherSelect = HEALBOT_TOOLTIP_NONE
     end
 end
+
 function HealBot_Options_SelectOtherSpellsCombo_DDlist()
-    hbOtherDDlist={}
-    for j=1, getn(HealBot_Options_SelectOtherSpellsCombo_List), 1 do
+    hbOtherDDlist = {}
+    for j = 1, getn(HealBot_Options_SelectOtherSpellsCombo_List), 1 do
         if HealBot_GetSpellId(HealBot_Options_SelectOtherSpellsCombo_List[j]) then
-            table.insert(hbOtherDDlist,HealBot_Options_SelectOtherSpellsCombo_List[j])
+            table.insert(hbOtherDDlist, HealBot_Options_SelectOtherSpellsCombo_List[j])
         end
     end
-    for j=1, getn(HealBot_Buff_Spells_List), 1 do
-        table.insert(hbOtherDDlist,HealBot_Buff_Spells_List[j])
+    for j = 1, getn(HealBot_Buff_Spells_List), 1 do
+        table.insert(hbOtherDDlist, HealBot_Buff_Spells_List[j])
     end
     table.sort(hbOtherDDlist)
 end
@@ -6524,7 +6571,7 @@ local DebuffSpells_List = nil
 local RacialDebuffSpells_List = nil
 function HealBot_Options_CDCTxt1_DropDown()
     DebuffSpells_List = HealBot_Options_GetDebuffSpells_List(HealBot_PlayerClass_ER)
-    RacialDebuffSpells_List = HealBot_Options_GetRacialDebuffSpells_List(strsub(HealBot_PlayerRaceEN, 1, 3))
+    RacialDebuffSpells_List = HealBot_Options_GetRacialDebuffSpells_List(HealBot_PlayerRaceEN)
     for x, _ in pairs(info) do
         info[x] = nil;
     end
@@ -6562,7 +6609,7 @@ end
 
 function HealBot_Options_CDCTxt2_DropDown()
     DebuffSpells_List = HealBot_Options_GetDebuffSpells_List(HealBot_PlayerClass_ER)
-    RacialDebuffSpells_List = HealBot_Options_GetRacialDebuffSpells_List(strsub(HealBot_PlayerRaceEN, 1, 3))
+    RacialDebuffSpells_List = HealBot_Options_GetRacialDebuffSpells_List(HealBot_PlayerRaceEN)
     for x, _ in pairs(info) do
         info[x] = nil;
     end
@@ -6600,7 +6647,7 @@ end
 
 function HealBot_Options_CDCTxt3_DropDown()
     DebuffSpells_List = HealBot_Options_GetDebuffSpells_List(HealBot_PlayerClass_ER)
-    RacialDebuffSpells_List = HealBot_Options_GetRacialDebuffSpells_List(strsub(HealBot_PlayerRaceEN, 1, 3))
+    RacialDebuffSpells_List = HealBot_Options_GetRacialDebuffSpells_List(HealBot_PlayerRaceEN)
     for x, _ in pairs(info) do
         info[x] = nil;
     end
@@ -9558,6 +9605,11 @@ function Healbot_Options_SpellManager_AddNewSpell(value)
 
         if not HealBot_Debuff_Types[value.Spell] then
             HealBot_Debuff_Types[value.Spell] = {}
+        end
+        if value.Dispell_Bleed then
+            if Healbot_Options_Table_Contain(HealBot_Debuff_Types[value.Spell], HEALBOT_BLEED_en) == false then
+                table.insert(HealBot_Debuff_Types[value.Spell], HEALBOT_BLEED_en)
+            end
         end
         if value.Dispell_Poison then
             if Healbot_Options_Table_Contain(HealBot_Debuff_Types[value.Spell], HEALBOT_POISON_en) == false then

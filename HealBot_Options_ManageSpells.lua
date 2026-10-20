@@ -193,12 +193,14 @@ function HealBot_Options_SpellManager_CreateOrSaveSpell()
         Healbot_Custom_SpellManager[spellName].Dispell_Curse = nil
         Healbot_Custom_SpellManager[spellName].Dispell_Disese = nil
         Healbot_Custom_SpellManager[spellName].Dispell_Magic = nil
+        Healbot_Custom_SpellManager[spellName].Dispell_Bleed = nil
         
     elseif CurrentSpellType == 2 then -- Dispell
         Healbot_Custom_SpellManager[spellName].Dispell_Poison = _G["HealBot_Options_SpellManager_Dispell_Poison"]:GetChecked()
         Healbot_Custom_SpellManager[spellName].Dispell_Curse = _G["HealBot_Options_SpellManager_Dispell_Curse"]:GetChecked()
         Healbot_Custom_SpellManager[spellName].Dispell_Disese = _G["HealBot_Options_SpellManager_Dispell_Disese"]:GetChecked()
         Healbot_Custom_SpellManager[spellName].Dispell_Magic = _G["HealBot_Options_SpellManager_Dispell_Magic"]:GetChecked()
+        --Healbot_Custom_SpellManager[spellName].Dispell_Bleed = _G["HealBot_Options_SpellManager_Dispell_Bleed"]:GetChecked()
         
         -- Clear spell-specific settings
         Healbot_Custom_SpellManager[spellName].CanResurect = nil
@@ -212,6 +214,8 @@ function HealBot_Options_SpellManager_CreateOrSaveSpell()
         Healbot_Custom_SpellManager[spellName].Dispell_Curse = nil
         Healbot_Custom_SpellManager[spellName].Dispell_Disese = nil
         Healbot_Custom_SpellManager[spellName].Dispell_Magic = nil
+        Healbot_Custom_SpellManager[spellName].Dispell_Bleed = nil
+        
     end
 
     -- Call AddNewSpell to register with the HealBot system

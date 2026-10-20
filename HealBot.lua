@@ -214,8 +214,9 @@ local Resurection_Spells = {
     HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Prayer_Beads,
     HEALBOT_CLASS_SPELLS[HEALBOT_PRIMALIST].Return_to_Life,
     HEALBOT_CLASS_SPELLS[HEALBOT_TINKER].Defibrilate,
-
-
+    HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Phoenix_Rebirth,
+    HEALBOT_CLASS_SPELLS[HEALBOT_CHRONOMANCER].Do_Over,
+    
 }
 local uscSpell, uscName, uscGUID = nil, nil, nil
 local HealBot_Timer1, HealBot_Timer2, HealBot_Timer3 = 0, 0, 0;

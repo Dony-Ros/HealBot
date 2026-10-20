@@ -1,4 +1,4 @@
-Healbot_Class_icons_Textures = 
+Healbot_Class_icons_Textures =
 {
     [HEALBOT_DRUID] = [[Interface\Addons\HealBot\Images\class\1\Druid.tga]],
     [HEALBOT_HUNTER] = [[Interface\Addons\HealBot\Images\class\1\Hunter.tga]],
@@ -59,7 +59,7 @@ HealBot_Class_En = {
     [HEALBOT_HERO] = HEALBOT_HERO,
     [HEALBOT_WITCH_DOCTOR] = HEALBOT_WITCH_DOCTOR,
     [HEALBOT_DEMON_HUNTER] = HEALBOT_DEMON_HUNTER,
-    [HEALBOT_WITCHHUNTER] = {HEALBOT_WITCHHUNTER},
+    [HEALBOT_WITCHHUNTER] = { HEALBOT_WITCHHUNTER },
     [HEALBOT_STORMBRINGER] = HEALBOT_STORMBRINGER,
     [HEALBOT_KNIGHT_OF_XOROTH] = HEALBOT_KNIGHT_OF_XOROTH,
     [HEALBOT_GUARDIAN] = HEALBOT_GUARDIAN,
@@ -1425,11 +1425,17 @@ HealBot_GlobalsDefaults = {
         [HEALBOT_STORMBRINGER] = {},
         [HEALBOT_KNIGHT_OF_XOROTH] = {},
         [HEALBOT_GUARDIAN] = {},
-        [HEALBOT_MONK] = {},[HEALBOT_RANGER] = {},
-        [HEALBOT_CHRONOMANCER] = {},
+        [HEALBOT_MONK] = {},
+        [HEALBOT_RANGER] = {},
+        [HEALBOT_CHRONOMANCER] =
+        {
+            [HEALBOT_CLASS_SPELLS[HEALBOT_CHRONOMANCER].Accelerated_Recovery] = 2,
+        },
         [HEALBOT_NECROMANCER] = {},
-        [HEALBOT_PYROMANCER] = {},
-        [HEALBOT_CULTIST] = {},
+        [HEALBOT_PYROMANCER] = {
+            [HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Ember_Touch] = 2,
+            [HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Inferno_Barrier] = 2,
+        },
         [HEALBOT_STARCALLER] = {},
         [HEALBOT_TINKER] = {
             [HEALBOT_CLASS_SPELLS[HEALBOT_TINKER].Nanobot_Barrier] = 2,
@@ -1464,7 +1470,13 @@ HealBot_GlobalsDefaults = {
         },
         [HEALBOT_WITCHHUNTER] = {},
         [HEALBOT_BARBARIAN] = {},
-
+        [HEALBOT_CULTIST] = {
+            [HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Void_Shield] = 2,
+        },
+        [HEALBOT_PYROMANCER] = {
+            [HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Ember_Touch] = 2,
+            [HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Inferno_Barrier] = 2,
+        }
     },
     hbExcludeSpells = {
         [67358] = "Rejuvenating",
@@ -1475,7 +1487,6 @@ HealBot_GlobalsDefaults = {
             Arcane_Brilliance,
             Arcane_Intellect,
         },
-
     }
 };
 

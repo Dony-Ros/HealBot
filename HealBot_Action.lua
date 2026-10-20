@@ -164,6 +164,14 @@ local _healbotSetSpell_T = {
         ['h'] = HEALBOT_CLASS_SPELLS[HEALBOT_TINKER].Repair_Shot,
         ['b'] = HEALBOT_CLASS_SPELLS[HEALBOT_TINKER].Bionics,
         ['r'] = HEALBOT_CLASS_SPELLS[HEALBOT_TINKER].Defibrilate,
+    },
+    [HEALBOT_CULTIST] = {
+        ['h'] = HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Void_Shield,
+    },
+    [HEALBOT_PYROMANCER] ={
+        ['h'] = HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Cinderheart,
+        ['b'] = HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Ember_Touch,
+        ['r'] = HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Phoenix_Rebirth,
     }
 }
 local hbPetLevel = 1
