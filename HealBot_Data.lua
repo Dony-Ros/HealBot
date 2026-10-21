@@ -1460,6 +1460,8 @@ HealBot_GlobalsDefaults = {
             [HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Mending_Mist] = 2,
             [HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Antivenom] = 2,
             [HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Emerald_Veil] = 2,
+            [HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Green_Salve] = 2,
+            [HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Shadra_s_Balm] = 2,
         },
         [HEALBOT_REAPER] = {},
         [HEALBOT_PRIMALIST] = {

@@ -152,7 +152,7 @@ local _healbotSetSpell_T = {
     [HEALBOT_VENOMANCER] = {
         ['h'] = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Shadras_Prayer,
         ['b'] = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Shadras_Wisdom,
-        ['d'] = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Dark_Barrier,
+        ['d'] = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Emerald_Veil,
         ['r'] = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Prayer_Beads
     },
     [HEALBOT_PRIMALIST] = {
@@ -564,7 +564,7 @@ function HealBot_Action_SetrSpell()
     elseif HealBot_PlayerClass_ER == HEALBOT_VENOMANCER then
         HealBot_hSpell = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Shadras_Prayer
         HealBot_bSpell = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Shadras_Wisdom
-        HealBot_dSpell = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Dark_Barrier
+        HealBot_dSpell = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Emerald_Veil
         HealBot_rSpell = HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Prayer_Beads
     else
         if _healbotSetSpell_T[HealBot_PlayerClass_ER] then

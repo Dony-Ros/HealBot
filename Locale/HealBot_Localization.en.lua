@@ -100,7 +100,7 @@ HEALBOT_CLASS_SPELLS                     = {
         Bionics = "Bionics",
     },
     [HEALBOT_VENOMANCER] = {
-        Venomancer_Unity                = "Venomancer_Unity",            -- 502982
+        Venomancer_Unity                = "Venomancer Unity",            -- 502982
         Venomancer_Fang_Venom_Lifeblood = "Fang Venom: Lifeblood",       -- 805775
         Venomancer_Widows_Watch         = "Widow's Watch",               -- 706014
         Venomancer_Venom_Resistance     = "Venom Resistance",            -- 804687
@@ -118,6 +118,11 @@ HEALBOT_CLASS_SPELLS                     = {
         Mending_Mist                    = "Mending Mist",                -- 800899
         Emerald_Veil                    = "Emerald Veil",                -- 13977921
         Alkahest                        = "Alkahest",                    -- 504342
+        Beetle_Pheromones = "Beetle Pheromones",
+        Spider_Pheromones = "Spider Pheromones",
+        Green_Salve = "Green Salve",
+        Shadra_s_Balm = "Shadra's Balm",
+        
     },
     [HEALBOT_WITCH_DOCTOR] = {
         WichDoctor_Serpent_Beam                = "Serpent Beam",                -- 500017

@@ -276,6 +276,9 @@ local HealBot_Buff_Spells_Total_List = {
         HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Shadras_Wisdom,
         HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Viziers_Gift,
         HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Gift_of_Shadra,
+        HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Spider_Pheromones,
+        HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Beetle_Pheromones,
+        
     },
     [HEALBOT_REAPER] = {
 
@@ -698,6 +701,8 @@ local HealBot_Options_SelectHealSpellsCombo_List_V2 = {
         HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Antivenom,
         HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Emerald_Veil,
         HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Alkahest,
+        HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Green_Salve,
+        HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Shadra_s_Balm,
     },
     [HEALBOT_REAPER] = {},
     [HEALBOT_PRIMALIST] = {
