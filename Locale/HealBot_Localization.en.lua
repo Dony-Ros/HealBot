@@ -41,7 +41,7 @@ HEALBOT_WARLOCK                          = "WARLOCK";
 HEALBOT_WARRIOR                          = "WARRIOR";
 HEALBOT_DEATHKNIGHT                      = "DEATH KNIGHT";
 
-HEALBOT_CLASESS = {
+HEALBOT_CLASESS                          = {
     HEALBOT_BARBARIAN,
     HEALBOT_WITCHHUNTER,
     HEALBOT_WITCH_DOCTOR,
@@ -79,291 +79,187 @@ HEALBOT_CURSE_OF_AGONY                   = GetSpellInfo(14868) or "Curse of Agon
 HEALBOT_CORRUPTION                       = GetSpellInfo(25311) or "Corruption";
 HEALBOT_CLASS_SPELLS                     = {
     [HEALBOT_TINKER] = {
-        Med_Pack = GetSpellInfo(502536) or "Med Pack",
-        Zap = GetSpellInfo(680196) or "Zap!",
-        My_Greatest_Invention = GetSpellInfo(560744) or "My Greatest Invention!",
-        Antimagic_Grenades = GetSpellInfo(804861) or "Antimagic Grenades",
-        Arcanoreflector = GetSpellInfo(806229) or "Arcanoreflector",
-        Bandage_Gun = GetSpellInfo(705780) or "Bandage Gun",
-        Basic_Intuition = GetSpellInfo(504060) or "Basic Intuition",
-        Battery_Swap = GetSpellInfo(805319) or "Battery Swap",
-        Build_Alarm_Beacon = GetSpellInfo(560754) or "Build: Alarm Beacon",
-        Build_Battery_Recharge_Station = GetSpellInfo(805308) or "Build: Battery Recharge Station",
-        Build_Restorative_Beacon = GetSpellInfo(801801) or "Build: Restorative Beacon",
-        Build_ZIGGI_6K = GetSpellInfo(524840) or "Build: ZIGGI-6K",
-        E_M_P = GetSpellInfo(706374) or "E.M.P", --dispell
-        Magic_Cleanser_4000X = GetSpellInfo(560472) or "Magic-Cleanser 4000X",
-        Repair_Shot = GetSpellInfo(801707) or "Repair Shot",
-        Nanobot_Reconstruction = GetSpellInfo(502556) or "Nanobot Reconstruction",
-        Nanobot_Barrier = GetSpellInfo(801709) or "Nanobot Barrier",
-        Defibrilate = GetSpellInfo(802175) or "Defibrillate",
-        Bionics = GetSpellInfo(706742) or "Bionics",
+        Med_Pack = "Med Pack",
+        Zap = "Zap!",
+        My_Greatest_Invention = "My Greatest Invention!",
+        Antimagic_Grenades = "Antimagic Grenades",
+        Arcanoreflector = "Arcanoreflector",
+        Bandage_Gun = "Bandage Gun",
+        Basic_Intuition = "Basic Intuition",
+        Battery_Swap = "Battery Swap",
+        Build_Alarm_Beacon = "Build: Alarm Beacon",
+        Build_Battery_Recharge_Station = "Build: Battery Recharge Station",
+        Build_Restorative_Beacon = "Build: Restorative Beacon",
+        Build_ZIGGI_6K = "Build: ZIGGI-6K",
+        E_M_P = "E.M.P", --dispell
+        Magic_Cleanser_4000X = "Magic-Cleanser 4000X",
+        Repair_Shot = "Repair Shot",
+        Nanobot_Reconstruction = "Nanobot Reconstruction",
+        Nanobot_Barrier = "Nanobot Barrier",
+        Defibrilate = "Defibrillate",
+        Bionics = "Bionics",
     },
     [HEALBOT_VENOMANCER] = {
-        --ID:502982
-        Venomancer_Unity                = GetSpellInfo(502982) or "Venomancer_Unity",
-        --ID:805775
-        Venomancer_Fang_Venom_Lifeblood = GetSpellInfo(805775) or "Fang Venom: Lifeblood",
-        --ID:706014 Widow's Watch
-        Venomancer_Widows_Watch         = GetSpellInfo(706014) or "Widow's Watch",
-        --ID:804687
-        Venomancer_Venom_Resistance     = GetSpellInfo(804687) or "Venom Resistance",
-        --ID:503275
-        Venomancer_Toxic_Renewa         = GetSpellInfo(503275) or "Toxic Renewa",
-        --ID: 502974 Dark Barrier
-        Venomancer_Dark_Barrier         = GetSpellInfo(502974) or "Dark Barrier",
-        --ID 502951 Regeneration
-        Venomancer_Regeneration         = GetSpellInfo(502951) or "Regeneration",
-        --ID 502968 Gift of Shadra
-        Venomancer_Gift_of_Shadra       = GetSpellInfo(502968) or "Gift of Shadra",
-        --ID 502947 Vizier's Gift
-        Venomancer_Viziers_Gift         = GetSpellInfo(502947) or "Vizier's Gift",
-        --ID 800870 Shadra's Prayer
-        Shadras_Prayer                  = GetSpellInfo(800870) or "Shadra's Prayer",
-        --ID 800874 Shadra's Favor
-        Venomancer_Shadras_Favor        = GetSpellInfo(800874) or "Shadra's Favor",
-        --ID 805731 Fang Venom: Creeping Poison
-        Venomancer_Fang_Venom           = GetSpellInfo(805731) or "Fang Venom: Creeping Poison",
-        --ID 803177 Shadra's Wisdom
-        Venomancer_Shadras_Wisdom       = GetSpellInfo(803177) or "Shadra's Wisdom",
-        --ID 800905 Antivenom
-        Antivenom                       = GetSpellInfo(800905) or "Antivenom",
-        --ID 520681 Prayer Beads
-        Venomancer_Prayer_Beads         = GetSpellInfo(520681) or "Prayer Beads",
-        --ID 800899 Mending Mist
-        Mending_Mist                    = GetSpellInfo(800899) or "Mending Mist",
-        --ID 13977921 Emerald Veil
-        Emerald_Veil                    = GetSpellInfo(13977921) or "Emerald Veil",
-        --ID 504342 Alkahest
-        Alkahest                        = GetSpellInfo(504342) or "Alkahest",
+        Venomancer_Unity                = "Venomancer_Unity",            -- 502982
+        Venomancer_Fang_Venom_Lifeblood = "Fang Venom: Lifeblood",       -- 805775
+        Venomancer_Widows_Watch         = "Widow's Watch",               -- 706014
+        Venomancer_Venom_Resistance     = "Venom Resistance",            -- 804687
+        Venomancer_Toxic_Renewa         = "Toxic Renewa",                -- 503275
+        Venomancer_Dark_Barrier         = "Dark Barrier",                -- 502974
+        Venomancer_Regeneration         = "Regeneration",                -- 502951
+        Venomancer_Gift_of_Shadra       = "Gift of Shadra",              -- 502968
+        Venomancer_Viziers_Gift         = "Vizier's Gift",               -- 502947
+        Shadras_Prayer                  = "Shadra's Prayer",             -- 800870
+        Venomancer_Shadras_Favor        = "Shadra's Favor",              -- 800874
+        Venomancer_Fang_Venom           = "Fang Venom: Creeping Poison", -- 805731
+        Venomancer_Shadras_Wisdom       = "Shadra's Wisdom",             -- 803177
+        Antivenom                       = "Antivenom",                   -- 800905
+        Venomancer_Prayer_Beads         = "Prayer Beads",                -- 520681
+        Mending_Mist                    = "Mending Mist",                -- 800899
+        Emerald_Veil                    = "Emerald Veil",                -- 13977921
+        Alkahest                        = "Alkahest",                    -- 504342
     },
     [HEALBOT_WITCH_DOCTOR] = {
-        --ID 500017 Serpent Beam
-        WichDoctor_Serpent_Beam                = GetSpellInfo(500017) or "Serpent Beam",
-        --ID 560294 Spirit of Sen'jin
-        WichDoctor_Spirit_Of_Sen_jin           = GetSpellInfo(560294) or "Spirit of Sen'jin",
-        --ID 29744 Loa's Brew
-        WichDoctor_Loas_Brew                   = GetSpellInfo(560294) or "Loa's Brew",
-        --ID 802208 Vitality of Sseratus
-        WichDoctor_Vitality_Of_Sseratus        = GetSpellInfo(802208) or "Vitality of Sseratus",
-        --ID 802207 Quickness of Kimbul
-        WichDoctor_Quickness_Of_Kimbul         = GetSpellInfo(802207) or "Quickness of Kimbul",
-        --ID 802215 Cunning of Quetz'lun
-        WichDoctor_Cunning_Of_Quetzlun         = GetSpellInfo(802215) or "Cunning of Quetz'lun",
-        --ID 802216 Touch of Torta
-        WichDoctor_Touch_Of_Torta              = GetSpellInfo(802216) or "Touch of Torta",
-        --ID 500952 Flask of Transmogrification
-        WichDoctor_Flask_Of_Transmogrification = GetSpellInfo(500952) or "Flask of Transmogrification",
-        --ID 501213 Snakeblood Brew
-        WichDoctor_Snakeblood_Brew             = GetSpellInfo(501213) or "Snakeblood Brew",
-        --ID 500961 Spirit Ward
-        WichDoctor_Spirit_Ward                 = GetSpellInfo(500961) or "Spirit Ward",
-        --ID 520497 Cleansing Ward
-        WichDoctor_Cleansing_Ward              = GetSpellInfo(520497) or "Cleansing Ward",
-        --ID 501117 Mojo Beam
-        WichDoctor_Mojo_Beam                   = GetSpellInfo(501117) or "Mojo Beam",
-        --ID 500018 Greater Voodoo Zone
-        WichDoctor_Greater_Voodoo_Zone         = GetSpellInfo(500018) or "Greater Voodoo Zone",
-        --ID 806130 Soothing Juju
-        WichDoctor_Soothing_Juju               = GetSpellInfo(806130) or "Soothing Juju",
-        --ID 560544 Sen'jin's Presence
-        WichDoctor_Senjins_Presence            = GetSpellInfo(560544) or "Sen'jin's Presence",
-        --ID 500053 Brewing Witch Doctor
-        WichDoctor_Brewing_Witch_Doctor        = GetSpellInfo(500053) or "Brewing Witch Doctor",
-        --ID 801697 Dance of the Loa
-        WichDoctor_Dance_Of_The_Loa            = GetSpellInfo(801697) or "Dance of the Loa",
-        --ID 801689 Flask of Shadows
-        WichDoctor_Flask_Of_Shadows            = GetSpellInfo(801689) or "Flask of Shadows",
-        --ID 801690 Flask of the Alchemist
-        WichDoctor_Flask_Of_The_Alchemist      = GetSpellInfo(801690) or "Flask of the Alchemist",
-        --ID 801667 Revitalize
-        WichDoctor_Revitalize                  = GetSpellInfo(801667) or "Revitalize",
-        --ID 503800 Revitalize_Hot
-        WichDoctor_Revitalize_Hot              = GetSpellInfo(503800) or "Revitalize",
-        --ID 806240 Hexbreak
-        WichDoctor_Hexbreak                    = GetSpellInfo(806240) or "Hexbreak",
-        --ID 520155 Magicbreak
-        WichDoctor_Magicbreak                  = GetSpellInfo(520155) or "Magicbreak",
-        --ID 500954 Flash of Mana
-        WichDoctor_Flash_Of_Mana               = GetSpellInfo(500954) or "Flash of Mana",
-        --ID 801796 Reclaim Soul
-        WichDoctor_Reclaim_Soul                = GetSpellInfo(801796) or "Reclaim Soul",
-        --ID 800195 Voodoo Alchemy
-        WichDoctor_Voodoo_Alchemy              = GetSpellInfo(800195) or "Voodoo Alchemy",
-        --ID 804049 Allcure Elixir
-        WichDoctor_Allcure_Elixir              = GetSpellInfo(804049) or "Allcure Elixir",
-        --ID 680872 Greater Spirit of Sen'jin
-        WichDoctor_Greater_Spirit_Of_Sen_jin   = GetSpellInfo(680872) or "Greater Spirit of Sen'jin",
-        --ID 806282 Shrink Ally
-        WichDoctor_Shrink_Ally                 = GetSpellInfo(806282) or "Shrink Ally",
-        --ID 801697 Dance of the Loa
-        WichDoctor_Dance_of_the_Loa            = GetSpellInfo(801697) or "Dance of the Loa",
-        --ID 804226 Army of the Loa
-        WichDoctor_Army_of_the_Loa             = GetSpellInfo(804226) or "Army of the Loa",
-
+        WichDoctor_Serpent_Beam                = "Serpent Beam",                -- 500017
+        WichDoctor_Spirit_Of_Sen_jin           = "Spirit of Sen'jin",           -- 560294
+        WichDoctor_Loas_Brew                   = "Loa's Brew",                  -- 29744
+        WichDoctor_Vitality_Of_Sseratus        = "Vitality of Sseratus",        -- 802208
+        WichDoctor_Quickness_Of_Kimbul         = "Quickness of Kimbul",         -- 802207
+        WichDoctor_Cunning_Of_Quetzlun         = "Cunning of Quetz'lun",        -- 802215
+        WichDoctor_Touch_Of_Torta              = "Touch of Torta",              -- 802216
+        WichDoctor_Flask_Of_Transmogrification = "Flask of Transmogrification", -- 500952
+        WichDoctor_Snakeblood_Brew             = "Snakeblood Brew",             -- 501213
+        WichDoctor_Spirit_Ward                 = "Spirit Ward",                 -- 500961
+        WichDoctor_Cleansing_Ward              = "Cleansing Ward",              -- 520497
+        WichDoctor_Mojo_Beam                   = "Mojo Beam",                   -- 501117
+        WichDoctor_Greater_Voodoo_Zone         = "Greater Voodoo Zone",         -- 500018
+        WichDoctor_Soothing_Juju               = "Soothing Juju",               -- 806130
+        WichDoctor_Senjins_Presence            = "Sen'jin's Presence",          -- 560544
+        WichDoctor_Brewing_Witch_Doctor        = "Brewing Witch Doctor",        -- 500053
+        WichDoctor_Dance_Of_The_Loa            = "Dance of the Loa",            -- 801697
+        WichDoctor_Flask_Of_Shadows            = "Flask of Shadows",            -- 801689
+        WichDoctor_Flask_Of_The_Alchemist      = "Flask of the Alchemist",      -- 801690
+        WichDoctor_Revitalize                  = "Revitalize",                  -- 801667
+        WichDoctor_Revitalize_Hot              = "Revitalize",                  -- 503800
+        WichDoctor_Hexbreak                    = "Hexbreak",                    -- 806240
+        WichDoctor_Magicbreak                  = "Magicbreak",                  -- 520155
+        WichDoctor_Flash_Of_Mana               = "Flash of Mana",               -- 500954
+        WichDoctor_Reclaim_Soul                = "Reclaim Soul",                -- 801796
+        WichDoctor_Voodoo_Alchemy              = "Voodoo Alchemy",              -- 800195
+        WichDoctor_Allcure_Elixir              = "Allcure Elixir",              -- 804049
+        WichDoctor_Greater_Spirit_Of_Sen_jin   = "Greater Spirit of Sen'jin",   -- 680872
+        WichDoctor_Shrink_Ally                 = "Shrink Ally",                 -- 806282
+        WichDoctor_Dance_of_the_Loa            = "Dance of the Loa",            -- 801697
+        WichDoctor_Army_of_the_Loa             = "Army of the Loa",             -- 804226
     },
     [HEALBOT_SUNCLERIC] = {
-
-        SunCleric_Illumination                     = GetSpellInfo(502423) or "Illumination",
-        SunCleric_Shine                            = GetSpellInfo(502449) or "Shine",
-        SunCleric_Sunshine                         = GetSpellInfo(502412) or "Sunshine",
-        SunCleric_Prayer_Of_The_Sands              = GetSpellInfo(502432) or "Prayer of the Sands",
-        SunCleric_Guidance_Touch_Of_Light          = GetSpellInfo(503509) or "Guidance: Touch of Light",
-        SunCleric_Guidance_Calamity                = GetSpellInfo(503498) or "Guidance: Calamity",
-        SunCleric_Guidance_Sanctify                = GetSpellInfo(503521) or "Guidance: Sanctify",
-        SunCleric_Devotion                         = GetSpellInfo(502440) or "Devotion",
-        SunCleric_Solar_Beam                       = GetSpellInfo(502407) or "Solar Beam",
-        SunCleric_Bless                            = GetSpellInfo(300858) or "Bless",
-        SunCleric_Blessings_Sun_Cleric             = GetSpellInfo(500209) or "Blessings Sun Cleric",
-        SunCleric_Divine_Vision                    = GetSpellInfo(800234) or "Divine Vision",
-        SunCleric_Guidance_Calamity_Override       = GetSpellInfo(804249) or "Guidance: Calamity",
-        SunCleric_Guidance_Intervention            = GetSpellInfo(503517) or "Guidance: Intervention",
-        SunCleric_Guidance_Touch_Of_Light_Override = GetSpellInfo(804251) or "Guidance: Touch of Light",
-        SunCleric_Prayer_Of_The_Sands_Override     = GetSpellInfo(500147) or "Prayer of the Sands",
-        SunCleric_Shine_Override                   = GetSpellInfo(800357) or "Shine",
-        SunCleric_Solar_Embrace                    = GetSpellInfo(502434) or "Solar Embrace",
-        SunCleric_Sunshine_Override                = GetSpellInfo(500142) or "Sunshine",
-        SunCleric_Dawnsear                         = GetSpellInfo(500146) or "Dawnsear",
-        SunCleric_Flash                            = GetSpellInfo(500144) or "Flash",
-        SunCleric_Transgression                    = GetSpellInfo(503368) or "Transgression",
-        SunCleric_Gleaming_Vigil                   = GetSpellInfo(502486) or "Gleaming Vigil",
-        SunCleric_Sunset                           = GetSpellInfo(804584) or "Sunset",
-        SunCleric_Revivify                         = GetSpellInfo(801790) or "Revivify",
-        SunCleric_Sanctify                         = GetSpellInfo(524968) or "Sanctify",
-        Shatter_Magic                              = GetSpellInfo(804067) or "Shatter Magic",
-        Blightbreaker                              = GetSpellInfo(804050) or "Blightbreaker",
-        Lightward                                  = GetSpellInfo(800233) or "Lightward",
-
+        SunCleric_Illumination                     = "Illumination",
+        SunCleric_Shine                            = "Shine",
+        SunCleric_Sunshine                         = "Sunshine",
+        SunCleric_Prayer_Of_The_Sands              = "Prayer of the Sands",
+        SunCleric_Guidance_Touch_Of_Light          = "Guidance: Touch of Light",
+        SunCleric_Guidance_Calamity                = "Guidance: Calamity",
+        SunCleric_Guidance_Sanctify                = "Guidance: Sanctify",
+        SunCleric_Devotion                         = "Devotion",
+        SunCleric_Solar_Beam                       = "Solar Beam",
+        SunCleric_Bless                            = "Bless",
+        SunCleric_Blessings_Sun_Cleric             = "Blessings Sun Cleric",
+        SunCleric_Divine_Vision                    = "Divine Vision",
+        SunCleric_Guidance_Calamity_Override       = "Guidance: Calamity",
+        SunCleric_Guidance_Intervention            = "Guidance: Intervention",
+        SunCleric_Guidance_Touch_Of_Light_Override = "Guidance: Touch of Light",
+        SunCleric_Prayer_Of_The_Sands_Override     = "Prayer of the Sands",
+        SunCleric_Shine_Override                   = "Shine",
+        SunCleric_Solar_Embrace                    = "Solar Embrace",
+        SunCleric_Sunshine_Override                = "Sunshine",
+        SunCleric_Dawnsear                         = "Dawnsear",
+        SunCleric_Flash                            = "Flash",
+        SunCleric_Transgression                    = "Transgression",
+        SunCleric_Gleaming_Vigil                   = "Gleaming Vigil",
+        SunCleric_Sunset                           = "Sunset",
+        SunCleric_Revivify                         = "Revivify",
+        SunCleric_Sanctify                         = "Sanctify",
+        Shatter_Magic                              = "Shatter Magic",
+        Blightbreaker                              = "Blightbreaker",
+        Lightward                                  = "Lightward",
     },
     [HEALBOT_PRIMALIST] = {
-
-        Hand_of_the_Earthmother = GetSpellInfo(502802) or " Hand of the Earthmother ",
-        Primal_Instinct         = GetSpellInfo(800197) or "Primal Instinct", --Buff
-        Primal_Infusion         = GetSpellInfo(500300) or "Primal Infusion", --HOT
-        Flourishing_Growth      = GetSpellInfo(805442) or "Flourishing Growth",
-        Earthmothers_Binding    = GetSpellInfo(805107) or "Earthmother's Binding",
-        Dreamslip               = GetSpellInfo(805867) or "Dreamslip",
-        Earthen_Resolve         = GetSpellInfo(706141) or "Earthen Resolve",
-        Dreamshield             = GetSpellInfo(805105) or "Dreamshield",
-        Neptulons_Chosen        = GetSpellInfo(800134) or "Neptulon's Chosen",
-        Spirit_Rush             = GetSpellInfo(800144) or "Spirit Rush",
-        Return_to_Life          = GetSpellInfo(801794) or "Return to Life",
-        Venomshake              = GetSpellInfo(804155) or "Venomshake",
-        Boon_of_the_Bear        = GetSpellInfo(500939) or "Boon of the Bear",
-
+        Hand_of_the_Earthmother = "Hand of the Earthmother",
+        Primal_Instinct         = "Primal Instinct", --Buff
+        Primal_Infusion         = "Primal Infusion", --HOT
+        Flourishing_Growth      = "Flourishing Growth",
+        Earthmothers_Binding    = "Earthmother's Binding",
+        Dreamslip               = "Dreamslip",
+        Earthen_Resolve         = "Earthen Resolve",
+        Dreamshield             = "Dreamshield",
+        Neptulons_Chosen        = "Neptulon's Chosen",
+        Spirit_Rush             = "Spirit Rush",
+        Return_to_Life          = "Return to Life",
+        Venomshake              = "Venomshake",
+        Boon_of_the_Bear        = "Boon of the Bear",
     },
     [HEALBOT_HERO] = {
-        Nature_Curse = GetSpellInfo(80573) or "Nature's Curse",
-        --ID 2782 Remove Corruption
-        Remove_Corruption = GetSpellInfo(2782) or "Remove Corruption",
-        --ID 80574 Cenarion Ward
-        Cenarion_Ward = GetSpellInfo(80574) or "Cenarion Ward",
-        --ID: 7600179 Flourish
-        Flourish = GetSpellInfo(7600179) or "Flourish",
-        --ID: 944828 Bloom
-        Seed_of_life_Bloom = GetSpellInfo(944828) or "Bloom",
+        Nature_Curse = "Nature's Curse",
+        Remove_Corruption = "Remove Corruption",
+        Cenarion_Ward = "Cenarion Ward",
+        Flourish = "Flourish",
+        Seed_of_life_Bloom = "Bloom",
     },
     [HEALBOT_DRUID] = {
-        --ID 1102728 Remove Curse
-        RemoveCurse = GetSpellInfo(1102728) or "Remove Curse",
-        --ID 1180153 Flourish
-        Florish_buff = GetSpellInfo(1180153) or "Flourish",
+        RemoveCurse = "Remove Curse",
+        Florish_buff = "Flourish",
     },
     [HEALBOT_CULTIST] = {
-        --ID 500715 Void Shield
-        Void_Shield = GetSpellInfo(500715) or "Void Shield",
-        --ID 500711 Eldritch Mending (heal)
-        Eldritch_Mending = GetSpellInfo(500711) or "Eldritch Mending",
-        --ID 500110 Gaze of C'Thun (heal)
-        Gaze_of_C_Thun = GetSpellInfo(500110) or "Gaze of C'Thun",
-        --ID 801791 Ritual of Awakening (Ress)
-        Ritual_of_Awakening = GetSpellInfo(801791) or "Ritual of Awakening",
-        --ID 502267 Forbidden Ritual (shield absorve)
-        Forbidden_Ritual = GetSpellInfo(502267) or "Forbidden Ritual",
+        Void_Shield = "Void Shield",
+        Eldritch_Mending = "Eldritch Mending",       --heal
+        Gaze_of_C_Thun = "Gaze of C'Thun",           --heal
+        Ritual_of_Awakening = "Ritual of Awakening", --ress
+        Forbidden_Ritual = "Forbidden Ritual",       --shield absorb
     },
     [HEALBOT_PYROMANCER] = {
-        --ID 800818 Ember Touch
-        Ember_Touch = GetSpellInfo(800818) or "Ember Touch",
-        --ID 800806 Cinderheart
-        Cinderheart = GetSpellInfo(800806) or "Cinderheart",                             --heal
-        --ID 680387 Magma Skin
-        Magma_Skin = GetSpellInfo(680387) or "Magma Skin",                               --sef buff
-        --ID 800196 Seal of Alysrazor
-        Seal_of_Alysrazor = GetSpellInfo(800196) or "Seal of Alysrazor",                 --buff
-        --ID 570170 Greater Seal of Alysrazor
-        Greater_Seal_of_Alysrazor = GetSpellInfo(570170) or "Greater Seal of Alysrazor", --buff
-        --ID 706867 Phoenix Rebirth
-        Phoenix_Rebirth = GetSpellInfo(706867) or "Phoenix Rebirth",                     --ress
-        --ID 803819 Kindle
-        Kindle = GetSpellInfo(803819) or "Kindle",                                       --heal
-        --ID 803649 Seal of Al'ar
-        Seal_of_Al_ar = GetSpellInfo(803649) or "Seal of Al'ar",                         --restore mana to ally
-        --ID 808060 Greater Seal of Al'ar
-        Greater_Seal_of_Al_ar = GetSpellInfo(804231) or "Greater Seal of Al'ar",         --restore mana of all party menbers.
-        --ID 535650 Inferno Barrier
-        Inferno_Barrier = GetSpellInfo(535650) or "Inferno Barrier",                     --shield absorve
-        ----ID 560749 Cauterize
-        Cauterize = GetSpellInfo(560749) or "Cauterize",                                 --remove bleed
-        --ID 807620 Volcanic Shell
-        Volcanic_Shell = GetSpellInfo(807620) or "Volcanic Shell",                       --sef shield absorve
-        --ID 804231 Reborn from Ash
-        Reborn_from_Ash = GetSpellInfo(804231) or "Reborn from Ash",                     --combat ress
-
+        Ember_Touch = "Ember Touch",
+        Cinderheart = "Cinderheart",                             --heal
+        Magma_Skin = "Magma Skin",                               --self buff
+        Seal_of_Alysrazor = "Seal of Alysrazor",                 --buff
+        Greater_Seal_of_Alysrazor = "Greater Seal of Alysrazor", --buff
+        Phoenix_Rebirth = "Phoenix Rebirth",                     --ress
+        Kindle = "Kindle",                                       --heal
+        Seal_of_Al_ar = "Seal of Al'ar",                         --restore mana to ally
+        Greater_Seal_of_Al_ar = "Greater Seal of Al'ar",         --restore mana of all party members
+        Inferno_Barrier = "Inferno Barrier",                     --shield absorb
+        Cauterize = "Cauterize",                                 --remove bleed
+        Volcanic_Shell = "Volcanic Shell",                       --self shield absorb
+        Reborn_from_Ash = "Reborn from Ash",                     --combat ress
     },
     [HEALBOT_CHRONOMANCER] = {
-        --ID 801303 Reverse Wound
-        Reverse_Wound = GetSpellInfo(801303) or "Reverse Wound",
-        --ID 572391 Nozdormu's Wisdom
-        Nozdormus_Wisdom = GetSpellInfo(572391) or "Nozdormu's Wisdom",
-        --ID 680389 Temporal Resilience
-        Temporal_Resilience = GetSpellInfo(680389) or "Temporal Resilience", --similar to mage armor
-        --ID 801270 Epoch (heal)
-        Epoch = GetSpellInfo(801270) or "Epoch",
-        --ID 800669 Do Over (ress)
-        Do_Over = GetSpellInfo(800669) or "Do Over",
-        --ID 801523 Chromie's Wisdom
-        Chromies_Wisdom = GetSpellInfo(801523) or "Chromie's Wisdom",
-        --ID 804490 Roll Back (dispell)
-        Roll_Back = GetSpellInfo(804490) or "Roll Back",
-        --ID 501772 Accelerated Recovery (hot)
-        Accelerated_Recovery = GetSpellInfo(501772) or "Accelerated Recovery",
-        --ID 572353 Correct the Mistake
-        Correct_the_Mistake = GetSpellInfo(572353) or "Correct the Mistake",
-        --ID 807455 Fortify Timeline
-        Fortify_Timeline = GetSpellInfo(807455) or "Fortify Timeline",
-        --ID 570177 Fabric of Time
-        Fabric_of_Time = GetSpellInfo(570177) or "Fabric of Time",
-        --ID 804495 Resynchronize (mass ress)
-        Resynchronize = GetSpellInfo(804495) or "Resynchronize",
+        Reverse_Wound = "Reverse Wound",
+        Nozdormus_Wisdom = "Nozdormu's Wisdom",
+        Temporal_Resilience = "Temporal Resilience",   --similar to mage armor
+        Epoch = "Epoch",                               --heal
+        Do_Over = "Do Over",                           --ress
+        Chromies_Wisdom = "Chromie's Wisdom",
+        Roll_Back = "Roll Back",                       --dispell
+        Accelerated_Recovery = "Accelerated Recovery", --hot
+        Correct_the_Mistake = "Correct the Mistake",
+        Fortify_Timeline = "Fortify Timeline",
+        Fabric_of_Time = "Fabric of Time",
+        Resynchronize = "Resynchronize", --mass ress
     },
     [HEALBOT_STARCALLER] = {
-        --ID 800370 Moonwell Splash (heal)
-        Moonwell_Splash = GetSpellInfo(800370) or "Moonwell Splash",
-        --ID 801795 Celestial Awakening (Ress)
-        Celestial_Awakening = GetSpellInfo(801795) or "Celestial Awakening",
-        --ID 300255 Celestial Mind (buff)
-        Celestial_Mind = GetSpellInfo(300255) or "Celestial Mind",
-        --ID 680301 Greater Celestial Mind (buff)
-        Greater_Celestial_Mind = GetSpellInfo(680301) or "Greater Celestial Mind",
-        --ID 520869 Elune's Purification (clease position,dissese)
-        Elune_s_Purification = GetSpellInfo(520869) or "Elune's Purification",
-        --ID 801990 Hand of Elune (heal)
-        Hand_of_Elune = GetSpellInfo(520869) or "Hand of Elune",
-        --ID 575039 Silverstream (aoe Heal)
-        Silverstream = GetSpellInfo(575039) or "Silverstream",
-        --ID 570124 Grace of the Moon (Water Walking)
-        Grace_of_the_Moon = GetSpellInfo(570124) or "Grace of the Moon",
-        --ID 801793 Tidal Rebirth (combat ress)
-        Tidal_Rebirth = GetSpellInfo(570124) or "Tidal Rebirth",
-        --ID 502348 Prayer of Elune (heal and dispell)
-        Prayer_of_Elune = GetSpellInfo(502348) or "Prayer of Elune",
-        --ID 573343 Arcane Protection (buff)
-        Arcane_Protection = GetSpellInfo(573343) or "Arcane Protection",
-        --ID 573348 Greater Arcane Protection (buff)
-        Greater_Arcane_Protection = GetSpellInfo(573348) or "Greater Arcane Protection",
-        --ID 574328 Touch of Moonlight (heal)
-        Touch_of_Moonlight = GetSpellInfo(574328) or "Touch of Moonlight",
-    }
+        Moonwell_Splash = "Moonwell Splash",                     --heal
+        Celestial_Awakening = "Celestial Awakening",             --ress
+        Celestial_Mind = "Celestial Mind",                       --buff
+        Greater_Celestial_Mind = "Greater Celestial Mind",       --buff
+        Elune_s_Purification = "Elune's Purification",           --cleanse poison, disease
+        Hand_of_Elune = "Hand of Elune",                         --heal
+        Silverstream = "Silverstream",                           --aoe heal
+        Grace_of_the_Moon = "Grace of the Moon",                 --water walking
+        Tidal_Rebirth = "Tidal Rebirth",                         --combat ress
+        Prayer_of_Elune = "Prayer of Elune",                     --heal and dispell
+        Arcane_Protection = "Arcane Protection",                 --buff
+        Greater_Arcane_Protection = "Greater Arcane Protection", --buff
+        Touch_of_Moonlight = "Touch of Moonlight",               --heal
+    },
 }
 --ID 272661 Mending Tide
 Mending_Tide                             = GetSpellInfo(272661) or "Mending Tide";
