@@ -159,6 +159,7 @@ HealBot_ConfigDefaults = {
         [HEALBOT_POISON_en] = { R = 0.12, G = 0.46, B = 0.24, },
         [HEALBOT_CURSE_en] = { R = 0.83, G = 0.43, B = 0.09, },
         [HEALBOT_CUSTOM_en] = { R = 0.45, G = 0, B = 0.26, }, -- added by Diacono
+        [HEALBOT_BLEED_en] = { R = 0.75, G = 0.25, B = 0.7, },
     },
     EmergIncRange = {
         [HEALBOT_DRUID] = 0,
@@ -329,6 +330,8 @@ HealBot_ConfigDefaults = {
         [HEALBOT_POISON_en] = 16,
         [HEALBOT_CURSE_en] = 14,
         [HEALBOT_CUSTOM_en] = 10,
+        [HEALBOT_BLEED_en] = 17,
+
     },
     HealBotBuffColR = {},
     HealBotBuffColG = {},

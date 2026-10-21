@@ -239,7 +239,6 @@ function HealBot_Panel_ToggelHealTarget(hbGUID)
 end
 
 function HealBot_Panel_ToggelPrivateTanks(unit)
-
     hbGUID = HealBot_UnitGUID(unit)
 
     mti = 0
@@ -255,7 +254,6 @@ function HealBot_Panel_ToggelPrivateTanks(unit)
     else
         table.insert(HealBot_MyPrivateTanks, hbGUID)
         HealBot_addPrivateTanks()
-
     end
     if Delay_RecalcParty < 2 then
         Delay_RecalcParty = 2
@@ -280,6 +278,7 @@ function HealBot_Panel_RetMyHealTarget(hbGUID)
         return false
     end
 end
+
 function HealBot_Panel_RetPrivateTanks(hbGUID)
     for i = 1, #HealBot_MyPrivateTanks do
         if hbGUID == HealBot_MyPrivateTanks[i] then
@@ -293,6 +292,7 @@ function HealBot_Panel_RetPrivateTanks(hbGUID)
         return false
     end
 end
+
 function HealBot_Panel_SetMultiColHoToffset(nx)
     HealBot_MultiColHoToffset = nx
 end
@@ -303,30 +303,32 @@ function HealBot_Panel_SetMultiRowHoToffset(nx)
 end
 
 local HealBot_ClassIconCoord = {
-    WARRIOR = { 1, 1 },
-    MAGE = { 1, 2 },
-    ROGUE = { 1, 3 },
-    DRUID = { 1, 4 },
-    HUNTER = { 2, 1 },
-    SHAMAN = { 2, 2 },
-    PRIEST = { 2, 3 },
-    WARLOCK = { 2, 4 },
-    PALADIN = { 3, 1 },
+    WARRIOR     = { 1, 1 },
+    MAGE        = { 1, 2 },
+    ROGUE       = { 1, 3 },
+    DRUID       = { 1, 4 },
+    HUNTER      = { 2, 1 },
+    SHAMAN      = { 2, 2 },
+    PRIEST      = { 2, 3 },
+    WARLOCK     = { 2, 4 },
+    PALADIN     = { 3, 1 },
     DEATHKNIGHT = { 3, 2 },
-    DEFAULT = { 4, 4 }
-};
-
-local ciCol, ciRow = nil, nil
+    DEFAULT     = { 4, 4 },
+}
 function HealBot_Action_SetClassIconTexture(button, unit)
-    bar = HealBot_Action_HealthBar(button);
+    local bar = HealBot_Action_HealthBar(button)
     if not bar then return end
-    iconName = _G[bar:GetName() .. "Icon15"];
-    _, class = UnitClass(unit)
-    ciCol, ciRow = HealBot_ClassIconCoord[class or "DEFAULT"][1], HealBot_ClassIconCoord[class or "DEFAULT"][2];
-    left, top = (ciRow - 1) * 0.25, (ciCol - 1) * 0.25;
-    iconName:SetTexture([[Interface\AddOns\HealBot\Images\icon_class.tga]]);
-    iconName:SetTexCoord(left, left + 0.25, top, top + 0.25);
+    local iconName = _G[bar:GetName() .. "Icon15"]
+    if not iconName then return end
+    local _, class = UnitClass(unit)
+    local coords = HealBot_ClassIconCoord[class] or HealBot_ClassIconCoord.DEFAULT
+    local ciRow, ciCol = coords[1], coords[2]
+    local left = (ciCol - 1) * 0.25
+    local top = (ciRow - 1) * 0.25
+    iconName:SetTexture([[Interface\AddOns\HealBot\Images\icon_class.tga]])
+    iconName:SetTexCoord(left, left + 0.25, top, top + 0.25)
 end
+
 function Healbot_Action_SetRoleIcon(button)
     bar = HealBot_Action_HealthBar(button);
     if not bar then return end
@@ -335,8 +337,8 @@ function Healbot_Action_SetRoleIcon(button)
         button.role = "CUSTOM"
     end
     iconName:SetTexture(Healbot_Role_Icons[button.role]);
-    
 end
+
 local thisX = nil
 local HealBot_ResetHeaderSkinDone = {}
 function HealBot_Panel_clearResetHeaderSkinDone()
@@ -398,7 +400,7 @@ function HealBot_Action_PositionButton(button, OsetX, OsetY, bWidth, bHeight, xH
         end
         OsetY = OsetY + bHeight + brspace + HealBot_AddHeight
         if showCI and not HealBot_retdebuffTargetIcon(button.unit) then
-            HealBot_Action_SetClassIconTexture(button,button.unit)
+            HealBot_Action_SetClassIconTexture(button, button.unit)
         end
     end
     return OsetY;

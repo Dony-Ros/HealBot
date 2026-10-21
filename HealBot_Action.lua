@@ -170,7 +170,7 @@ local _healbotSetSpell_T = {
         ['r'] = HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Ritual_of_Awakening,
         ['b'] = HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Forbidden_Ritual,
     },
-    [HEALBOT_PYROMANCER] ={
+    [HEALBOT_PYROMANCER] = {
         ['h'] = HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Cinderheart,
         ['b'] = HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Ember_Touch,
         ['r'] = HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Phoenix_Rebirth,
@@ -246,7 +246,6 @@ local uRange = 0
 local shb = nil
 local HealBotButtonMacroAttribs = {}
 local HB_button, HB_prefix = nil
---local mUnit=nil
 local mText = nil
 local mId = nil
 local showmenu = nil
@@ -272,7 +271,8 @@ local HealBot_AggroBarColr = {
     [6] = 1,
     [7] = 1,
     [8] = 1,
-    [9] = 1
+    [9] = 1,
+    [10] = 1,
 }
 local HealBot_AggroBarColg = {
     [-2] = 0.7,
@@ -285,7 +285,8 @@ local HealBot_AggroBarColg = {
     [6] = 1,
     [7] = 1,
     [8] = 1,
-    [9] = 1
+    [9] = 1,
+    [10] = 1,
 }
 local HealBot_AggroBarColb = {
     [-2] = 1,
@@ -298,7 +299,8 @@ local HealBot_AggroBarColb = {
     [6] = 1,
     [7] = 1,
     [8] = 1,
-    [9] = 1
+    [9] = 1,
+    [10] = 1,
 }
 local HealBot_AggroUnitThreat = 1
 local scuHlth, scuMaxHlth, scuHealsIn = nil, nil, nil
@@ -307,20 +309,10 @@ local ModKey = nil
 local abutton = nil
 local aj = nil
 local lTimer, eTimer = 0, GetTime()
---local b = nil
---local xButton = nil
---local HealBot_HasAggro = false
---local curGUID = nil
---local db1 = nil
---local db2 = nil
---local tdebugtime = GetTime()
---local shbar = nil
--- local HealBot_resetUnitStatus=nil
 function HealBot_Action_UpdateAggro(unit, status, threatStatus, hbGUID, threatPct)
     uName = UnitName(unit)
     barName = HealBot_Unit_Bar4[unit]
     if unit and not hbGUID then hbGUID = HealBot_GUID[unit] end
-
     if not barName or not uName or not hbGUID then
         return
     end
@@ -2987,6 +2979,12 @@ function HealBot_Action_SetDebuffAggroCols()
     HealBot_AggroBarColr[9] = HealBot_Config.CDCBarColour[HEALBOT_CUSTOM_en].R
     HealBot_AggroBarColg[9] = HealBot_Config.CDCBarColour[HEALBOT_CUSTOM_en].G
     HealBot_AggroBarColb[9] = HealBot_Config.CDCBarColour[HEALBOT_CUSTOM_en].B
+    if not HealBot_Config.CDCBarColour[HEALBOT_BLEED_en] then
+        HealBot_Config.CDCBarColour[HEALBOT_BLEED_en] = HealBot_ConfigDefaults.CDCBarColour[HEALBOT_BLEED_en]
+    end
+    HealBot_AggroBarColr[10] = HealBot_Config.CDCBarColour[HEALBOT_BLEED_en].R
+    HealBot_AggroBarColg[10] = HealBot_Config.CDCBarColour[HEALBOT_BLEED_en].G
+    HealBot_AggroBarColb[10] = HealBot_Config.CDCBarColour[HEALBOT_BLEED_en].B
 end
 
 function HealBot_Action_SetHightlightAggroCols()

@@ -290,7 +290,9 @@ local debuffCodes = {
     [HEALBOT_MAGIC_en] = 6,
     [HEALBOT_POISON_en] = 7,
     [HEALBOT_CURSE_en] = 8,
-    [HEALBOT_CUSTOM_en] = 9
+    [HEALBOT_CUSTOM_en] = 9,
+    [HEALBOT_BLEED_en] = 10,
+    
 }
 local HealBot_VehicleUnit = {}
 local HealBot_UnitInVehicle = {}

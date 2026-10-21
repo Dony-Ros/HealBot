@@ -1,4 +1,4 @@
-HEALBOT_VERSION                          = "1.0.4";
+HEALBOT_VERSION                          = "1.0.5";
 HealBotSkinVersion                       = 17;
 HEALBOT_PACH_VERSION                     = "0.0.0.1";
 
@@ -41,6 +41,39 @@ HEALBOT_WARLOCK                          = "WARLOCK";
 HEALBOT_WARRIOR                          = "WARRIOR";
 HEALBOT_DEATHKNIGHT                      = "DEATH KNIGHT";
 
+HEALBOT_CLASESS = {
+    HEALBOT_BARBARIAN,
+    HEALBOT_WITCHHUNTER,
+    HEALBOT_WITCH_DOCTOR,
+    HEALBOT_DEMON_HUNTER,
+    HEALBOT_STORMBRINGER,
+    HEALBOT_KNIGHT_OF_XOROTH,
+    HEALBOT_GUARDIAN,
+    HEALBOT_MONK,
+    HEALBOT_RANGER,
+    HEALBOT_CHRONOMANCER,
+    HEALBOT_NECROMANCER,
+    HEALBOT_PYROMANCER,
+    HEALBOT_CULTIST,
+    HEALBOT_STARCALLER,
+    HEALBOT_TINKER,
+    HEALBOT_VENOMANCER,
+    HEALBOT_REAPER,
+    HEALBOT_PRIMALIST,
+    HEALBOT_RUNEMASTER,
+    HEALBOT_SUNCLERIC,
+    HEALBOT_DRUID,
+    HEALBOT_HUNTER,
+    HEALBOT_MAGE,
+    HEALBOT_PALADIN,
+    HEALBOT_PRIEST,
+    HEALBOT_ROGUE,
+    HEALBOT_SHAMAN,
+    HEALBOT_WARLOCK,
+    HEALBOT_WARRIOR,
+    HEALBOT_DEATHKNIGHT,
+    HEALBOT_HERO,
+}
 HEALBOT_SHADOW_PRISION                   = GetSpellInfo(5011055) or "Shadow Prision";
 HEALBOT_CURSE_OF_AGONY                   = GetSpellInfo(14868) or "Curse of Agony";
 HEALBOT_CORRUPTION                       = GetSpellInfo(25311) or "Corruption";
@@ -303,7 +336,6 @@ HEALBOT_CLASS_SPELLS                     = {
         --ID 804495 Resynchronize (mass ress)
         Resynchronize = GetSpellInfo(804495) or "Resynchronize",
     },
-
 }
 --ID 272661 Mending Tide
 Mending_Tide                             = GetSpellInfo(272661) or "Mending Tide";
