@@ -336,6 +336,34 @@ HEALBOT_CLASS_SPELLS                     = {
         --ID 804495 Resynchronize (mass ress)
         Resynchronize = GetSpellInfo(804495) or "Resynchronize",
     },
+    [HEALBOT_STARCALLER] = {
+        --ID 800370 Moonwell Splash (heal)
+        Moonwell_Splash = GetSpellInfo(800370) or "Moonwell Splash",
+        --ID 801795 Celestial Awakening (Ress)
+        Celestial_Awakening = GetSpellInfo(801795) or "Celestial Awakening",
+        --ID 300255 Celestial Mind (buff)
+        Celestial_Mind = GetSpellInfo(300255) or "Celestial Mind",
+        --ID 680301 Greater Celestial Mind (buff)
+        Greater_Celestial_Mind = GetSpellInfo(680301) or "Greater Celestial Mind",
+        --ID 520869 Elune's Purification (clease position,dissese)
+        Elune_s_Purification = GetSpellInfo(520869) or "Elune's Purification",
+        --ID 801990 Hand of Elune (heal)
+        Hand_of_Elune = GetSpellInfo(520869) or "Hand of Elune",
+        --ID 575039 Silverstream (aoe Heal)
+        Silverstream = GetSpellInfo(575039) or "Silverstream",
+        --ID 570124 Grace of the Moon (Water Walking)
+        Grace_of_the_Moon = GetSpellInfo(570124) or "Grace of the Moon",
+        --ID 801793 Tidal Rebirth (combat ress)
+        Tidal_Rebirth = GetSpellInfo(570124) or "Tidal Rebirth",
+        --ID 502348 Prayer of Elune (heal and dispell)
+        Prayer_of_Elune = GetSpellInfo(502348) or "Prayer of Elune",
+        --ID 573343 Arcane Protection (buff)
+        Arcane_Protection = GetSpellInfo(573343) or "Arcane Protection",
+        --ID 573348 Greater Arcane Protection (buff)
+        Greater_Arcane_Protection = GetSpellInfo(573348) or "Greater Arcane Protection",
+        --ID 574328 Touch of Moonlight (heal)
+        Touch_of_Moonlight = GetSpellInfo(574328) or "Touch of Moonlight",
+    }
 }
 --ID 272661 Mending Tide
 Mending_Tide                             = GetSpellInfo(272661) or "Mending Tide";

@@ -263,7 +263,10 @@ local HealBot_Buff_Spells_Total_List = {
 
     },
     [HEALBOT_STARCALLER] = {
-
+        HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Celestial_Mind,
+        HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Greater_Celestial_Mind,
+        HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Arcane_Protection,
+        HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Greater_Arcane_Protection,
     },
     [HEALBOT_TINKER] = {
         HEALBOT_CLASS_SPELLS[HEALBOT_TINKER].Bionics,
@@ -666,7 +669,20 @@ local HealBot_Options_SelectHealSpellsCombo_List_V2 = {
         HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Cauterize,
 
     },
-    [HEALBOT_STARCALLER] = {},
+    [HEALBOT_STARCALLER] = 
+    {
+        HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Moonwell_Splash,
+        HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Celestial_Awakening,
+        --HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Celestial_Mind,
+        --HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Greater_Celestial_Mind,
+        HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Elune_s_Purification,
+        HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Hand_of_Elune,
+        HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Silverstream,
+        HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Grace_of_the_Moon,
+        HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Tidal_Rebirth,
+        HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Prayer_of_Elune,
+        HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Touch_of_Moonlight,
+    },
     [HEALBOT_TINKER] = {
         HEALBOT_CLASS_SPELLS[HEALBOT_TINKER].Repair_Shot,
         HEALBOT_CLASS_SPELLS[HEALBOT_TINKER].Nanobot_Reconstruction,
@@ -828,7 +844,8 @@ local HealBot_Debuff_Spells = {
 
     },
     [HEALBOT_STARCALLER] = {
-
+        HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Prayer_of_Elune,
+        HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Elune_s_Purification,
     },
     [HEALBOT_TINKER] = {
         HEALBOT_CLASS_SPELLS[HEALBOT_TINKER].Magic_Cleanser_4000X,
@@ -973,7 +990,14 @@ local HealBot_Debuff_Types = {
         HEALBOT_BLEED_en,
         HEALBOT_MAGIC_en,
         HEALBOT_CURSE_en
-    }
+    },
+    [HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Elune_s_Purification] = {
+        HEALBOT_POISON_en,
+        HEALBOT_DISEASE_en
+    },
+    [HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Prayer_of_Elune] = {
+        HEALBOT_MAGIC_en,
+    },
 }
 
 local HealBot_Racial_Debuff_Spells = {
@@ -4057,7 +4081,11 @@ local HealBot_Options_SelectOtherSpellsCombo_List = {
         HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Cauterize,
     },
     [HEALBOT_CULTIST] = {},
-    [HEALBOT_STARCALLER] = {},
+    [HEALBOT_STARCALLER] = 
+    {
+        HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Prayer_of_Elune,
+        HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Elune_s_Purification,
+    },
     [HEALBOT_TINKER] = {},
     [HEALBOT_VENOMANCER] = {
         HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Prayer_Beads,

@@ -216,9 +216,10 @@ local Resurection_Spells = {
     HEALBOT_CLASS_SPELLS[HEALBOT_TINKER].Defibrilate,
     HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Phoenix_Rebirth,
     HEALBOT_CLASS_SPELLS[HEALBOT_CHRONOMANCER].Do_Over,
+    HEALBOT_CLASS_SPELLS[HEALBOT_CHRONOMANCER].Resynchronize,
     HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Ritual_of_Awakening,
-    
-    
+    HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Celestial_Awakening,
+    HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Tidal_Rebirth,
 }
 local uscSpell, uscName, uscGUID = nil, nil, nil
 local HealBot_Timer1, HealBot_Timer2, HealBot_Timer3 = 0, 0, 0;

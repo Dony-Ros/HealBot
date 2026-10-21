@@ -1691,11 +1691,13 @@ function HealBot_Init_SmartCast()
     elseif HealBot_PlayerClass_ER == HEALBOT_CULTIST then
         SmartCast_Res = HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Ritual_of_Awakening
     elseif HealBot_PlayerClass_ER == HEALBOT_PRIMALIST then
-        SmartCast_Res = HEALBOT_CLASS_SPELLS[HEALBOT_PRIMALIST].Return_to_Life;
+        SmartCast_Res = HEALBOT_CLASS_SPELLS[HEALBOT_PRIMALIST].Return_to_Life
     elseif HealBot_PlayerClass_ER == HEALBOT_PYROMANCER then
-        SmartCast_Res = HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Phoenix_Rebirth;
+        SmartCast_Res = HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Phoenix_Rebirth
     elseif HealBot_PlayerClass_ER == HEALBOT_CHRONOMANCER then
-        SmartCast_Res = HEALBOT_CLASS_SPELLS[HEALBOT_CHRONOMANCER].Do_Over;
+        SmartCast_Res = HEALBOT_CLASS_SPELLS[HEALBOT_CHRONOMANCER].Do_Over
+    elseif HealBot_PlayerClass_ER == HEALBOT_STARCALLER then
+        SmartCast_Res = HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Celestial_Awakening
     elseif HealBot_PlayerClass_ER == HEALBOT_DRUID then
         SmartCast_Res = HEALBOT_REVIVE;
     elseif HealBot_PlayerClass_ER == HEALBOT_PALADIN then
