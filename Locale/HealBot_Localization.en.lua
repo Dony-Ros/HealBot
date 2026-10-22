@@ -220,6 +220,8 @@ HEALBOT_CLASS_SPELLS                     = {
         Gaze_of_C_Thun = "Gaze of C'Thun",           --heal
         Ritual_of_Awakening = "Ritual of Awakening", --ress
         Forbidden_Ritual = "Forbidden Ritual",       --shield absorb
+        Whispers_of_Y_shaarj = "Whispers of Y'shaarj",
+        
     },
     [HEALBOT_PYROMANCER] = {
         Ember_Touch = "Ember Touch",

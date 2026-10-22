@@ -260,6 +260,7 @@ local HealBot_Buff_Spells_Total_List = {
         HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Greater_Seal_of_Alysrazor,
     },
     [HEALBOT_CULTIST] = {
+        HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Whispers_of_Y_shaarj,
 
     },
     [HEALBOT_STARCALLER] = {
