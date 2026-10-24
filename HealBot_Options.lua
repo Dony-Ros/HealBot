@@ -3971,12 +3971,7 @@ function HealBot_Options_SelectHealSpellsCombo_DropDown()
 end
 
 function HealBot_Options_SelectHealSpellsCombo_DDlist()
-    hbHealDDlist = {}
-    for j = 1, getn(HealBot_Options_SelectHealSpellsCombo_List_V2[HealBot_PlayerClass_ER]), 1 do
-        if HealBot_GetSpellId(HealBot_Options_SelectHealSpellsCombo_List_V2[HealBot_PlayerClass_ER][j]) then
-            table.insert(hbHealDDlist, HealBot_Options_SelectHealSpellsCombo_List_V2[HealBot_PlayerClass_ER][j])
-        end
-    end
+    hbHealDDlist = HealBot_Options_SelectHealSpellsCombo_List_V2[HealBot_PlayerClass_ER];
     table.sort(hbHealDDlist)
 end
 
