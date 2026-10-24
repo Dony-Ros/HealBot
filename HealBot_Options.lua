@@ -4152,15 +4152,7 @@ function HealBot_Options_SelectOtherSpellsCombo_DropDown()
 end
 
 function HealBot_Options_SelectOtherSpellsCombo_DDlist()
-    hbOtherDDlist = {}
-    for j = 1, getn(HealBot_Options_SelectOtherSpellsCombo_List), 1 do
-        if HealBot_GetSpellId(HealBot_Options_SelectOtherSpellsCombo_List[j]) then
-            table.insert(hbOtherDDlist, HealBot_Options_SelectOtherSpellsCombo_List[j])
-        end
-    end
-    for j = 1, getn(HealBot_Buff_Spells_List), 1 do
-        table.insert(hbOtherDDlist, HealBot_Buff_Spells_List[j])
-    end
+    hbOtherDDlist = HealBot_Options_SelectOtherSpellsCombo_List[HealBot_PlayerClass_ER]
     table.sort(hbOtherDDlist)
 end
 
