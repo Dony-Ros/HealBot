@@ -10,25 +10,25 @@ HEALBOT_REALM_NAME                       = GetRealmName();
 
 HEALBOT_BARBARIAN                        = "BARBARIAN"
 HEALBOT_WITCHHUNTER                      = "WITCHHUNTER"
-HEALBOT_WITCH_DOCTOR                     = "WITCHDOCTOR";
-HEALBOT_DEMON_HUNTER                     = "DEMONHUNTER";
-HEALBOT_STORMBRINGER                     = "STORMBRINGER";
-HEALBOT_KNIGHT_OF_XOROTH                 = "FLESHWARDEN";
-HEALBOT_GUARDIAN                         = "GUARDIAN";
-HEALBOT_MONK                             = "MONK";
-HEALBOT_RANGER                           = "RANGER";
-HEALBOT_CHRONOMANCER                     = "CHRONOMANCER";
-HEALBOT_NECROMANCER                      = "NECROMANCER";
-HEALBOT_PYROMANCER                       = "PYROMANCER";
-HEALBOT_CULTIST                          = "CULTIST";
-HEALBOT_STARCALLER                       = "STARCALLER";
-HEALBOT_TINKER                           = "TINKER";
+HEALBOT_WITCH_DOCTOR                     = "WITCHDOCTOR"
+HEALBOT_DEMON_HUNTER                     = "DEMONHUNTER"
+HEALBOT_STORMBRINGER                     = "STORMBRINGER"
+HEALBOT_KNIGHT_OF_XOROTH                 = "FLESHWARDEN"
+HEALBOT_GUARDIAN                         = "GUARDIAN"
+HEALBOT_MONK                             = "MONK"
+HEALBOT_RANGER                           = "RANGER"
+HEALBOT_CHRONOMANCER                     = "CHRONOMANCER"
+HEALBOT_NECROMANCER                      = "NECROMANCER"
+HEALBOT_PYROMANCER                       = "PYROMANCER"
+HEALBOT_CULTIST                          = "CULTIST"
+HEALBOT_STARCALLER                       = "STARCALLER"
+HEALBOT_TINKER                           = "TINKER"
 HEALBOT_VENOMANCER                       = "PROPHET"     -- AKA Venomancer;
-HEALBOT_REAPER                           = "REAPER";
-HEALBOT_PRIMALIST                        = "WILDWALKER"; -- AKA Primalist
-HEALBOT_RUNEMASTER                       = "SPIRITMAGE"; -- AKA RUNEMASTER
-HEALBOT_SUNCLERIC                        = "SUNCLERIC";
-
+HEALBOT_REAPER                           = "REAPER"
+HEALBOT_PRIMALIST                        = "WILDWALKER" -- AKA Primalist
+HEALBOT_RUNEMASTER                       = "SPIRITMAGE" -- AKA RUNEMASTER
+HEALBOT_SUNCLERIC                        = "SUNCLERIC"
+HEALBOT_BLOODMAGE                        = "SONOFARUGAL"
 HEALBOT_HERO                             = "HERO";
 HEALBOT_DRUID                            = "DRUID";
 HEALBOT_HUNTER                           = "HUNTER";
@@ -72,6 +72,7 @@ HEALBOT_CLASESS                          = {
     HEALBOT_WARLOCK,
     HEALBOT_WARRIOR,
     HEALBOT_DEATHKNIGHT,
+    HEALBOT_BLOODMAGE,
     HEALBOT_HERO,
 }
 HEALBOT_SHADOW_PRISION                   = GetSpellInfo(5011055) or "Shadow Prision";
@@ -122,6 +123,7 @@ HEALBOT_CLASS_SPELLS                     = {
         Spider_Pheromones = "Spider Pheromones",
         Green_Salve = "Green Salve",
         Shadra_s_Balm = "Shadra's Balm",
+        Blight_Antidote = "Blight Antidote",
         
     },
     [HEALBOT_WITCH_DOCTOR] = {
@@ -216,12 +218,12 @@ HEALBOT_CLASS_SPELLS                     = {
     },
     [HEALBOT_CULTIST] = {
         Void_Shield = "Void Shield",
-        Eldritch_Mending = "Eldritch Mending",       --heal
-        Gaze_of_C_Thun = "Gaze of C'Thun",           --heal
-        Ritual_of_Awakening = "Ritual of Awakening", --ress
-        Forbidden_Ritual = "Forbidden Ritual",       --shield absorb
+        Eldritch_Mending = "Eldritch Mending",
+        Gaze_of_C_Thun = "Gaze of C'Thun",
+        Ritual_of_Awakening = "Ritual of Awakening",
+        Forbidden_Ritual = "Forbidden Ritual",
         Whispers_of_Y_shaarj = "Whispers of Y'shaarj",
-        
+
     },
     [HEALBOT_PYROMANCER] = {
         Ember_Touch = "Ember Touch",
@@ -266,6 +268,13 @@ HEALBOT_CLASS_SPELLS                     = {
         Arcane_Protection = "Arcane Protection",                 --buff
         Greater_Arcane_Protection = "Greater Arcane Protection", --buff
         Touch_of_Moonlight = "Touch of Moonlight",               --heal
+    },
+    [HEALBOT_BLOODMAGE] ={
+        Sanguine_Mend = "Sanguine Mend", --Heal
+        Blood_Shield = "Blood Shield",--absorve
+        Bloodthorns = "Bloodthorns",--buff
+        Coagulated_Shield = "Coagulated Shield",--buff
+
     },
 }
 --ID 272661 Mending Tide

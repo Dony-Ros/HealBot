@@ -1462,6 +1462,7 @@ HealBot_GlobalsDefaults = {
             [HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Emerald_Veil] = 2,
             [HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Green_Salve] = 2,
             [HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Shadra_s_Balm] = 2,
+            [HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Blight_Antidote] = 2,
         },
         [HEALBOT_REAPER] = {},
         [HEALBOT_PRIMALIST] = {
@@ -1482,6 +1483,9 @@ HealBot_GlobalsDefaults = {
         [HEALBOT_PYROMANCER] = {
             [HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Ember_Touch] = 2,
             [HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Inferno_Barrier] = 2,
+        },
+        [HEALBOT_BLOODMAGE] = {
+            
         }
     },
     hbExcludeSpells = {

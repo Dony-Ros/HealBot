@@ -293,10 +293,12 @@ local HealBot_Buff_Spells_Total_List = {
     },
     [HEALBOT_SUNCLERIC] = {
         HEALBOT_CLASS_SPELLS[HEALBOT_SUNCLERIC].SunCleric_Bless,
-
     },
     [HEALBOT_WITCHHUNTER] = {},
     [HEALBOT_BARBARIAN] = {},
+    [HEALBOT_BLOODMAGE] = {
+
+    }
 }
 local HealBot_Options_Class_HoTctlName_List = {
     [HEALBOT_GIFT_OF_THE_NAARU] = "ALL",
@@ -473,8 +475,6 @@ local strtrim = strtrim
 local strsub = strsub
 local tonumber = tonumber
 local floor = floor
-local HealBot_Action_SetAllAttribs_flag = false
-local class = nil
 local mins, secs = 0, 0
 local DoInitTab = {
     [1] = true,
@@ -490,8 +490,6 @@ local DoInitTab = {
 }
 local bar = nil
 local sName = nil
-local sRank = nil
-local dName = nil
 local id = nil
 local sID = nil
 local val = nil
@@ -506,9 +504,6 @@ local sounds = nil
 local soundsIndex = {}
 local updatingMedia = false
 local LSM = LibStub("LibSharedMedia-3.0")
-local uGUID = nil
-local xGUID = nil
-local BuffWatchName = nil
 local ClickedBuffGroupDD = nil
 local tGUID = nil
 local tName = nil
@@ -643,13 +638,16 @@ local HealBot_Options_SelectHealSpellsCombo_List_V2 = {
         HEALBOT_CLASS_SPELLS[HEALBOT_WITCH_DOCTOR].WichDoctor_Dance_of_the_Loa,
         HEALBOT_CLASS_SPELLS[HEALBOT_WITCH_DOCTOR].WichDoctor_Shrink_Ally,
         HEALBOT_CLASS_SPELLS[HEALBOT_WITCH_DOCTOR].WichDoctor_Hexbreak,
-        HEALBOT_CLASS_SPELLS[HEALBOT_WITCH_DOCTOR].WichDoctor_Magicbreak, },
+        HEALBOT_CLASS_SPELLS[HEALBOT_WITCH_DOCTOR].WichDoctor_Magicbreak,
+    },
     [HEALBOT_DEMON_HUNTER] = {},
     [HEALBOT_STORMBRINGER] = {},
     [HEALBOT_KNIGHT_OF_XOROTH] = {},
     [HEALBOT_GUARDIAN] = {},
     [HEALBOT_MONK] = {},
-
+    [HEALBOT_BLOODMAGE] ={
+        HEALBOT_CLASS_SPELLS[HEALBOT_BLOODMAGE].Sanguine_Mend,
+    },
     [HEALBOT_RANGER] = {},
     [HEALBOT_CHRONOMANCER] =
     {
@@ -704,6 +702,7 @@ local HealBot_Options_SelectHealSpellsCombo_List_V2 = {
         HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Alkahest,
         HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Green_Salve,
         HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Shadra_s_Balm,
+        HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Blight_Antidote,
     },
     [HEALBOT_REAPER] = {},
     [HEALBOT_PRIMALIST] = {
@@ -737,6 +736,20 @@ local HealBot_Options_SelectHealSpellsCombo_List_V2 = {
         HEALBOT_CLASS_SPELLS[HEALBOT_CULTIST].Eldritch_Mending,
     }
 }
+function Healbot_Options_SelectHealSpellsCombo_List()
+    return HealBot_Options_SelectHealSpellsCombo_List_V2;
+end
+
+function Healbot_Options_Add_SelectHealSpellsCombo_List(spell)
+    if not HealBot_Options_SelectHealSpellsCombo_List_V2[HealBot_PlayerRaceEN] then
+        HealBot_Options_SelectHealSpellsCombo_List_V2[HealBot_PlayerRaceEN] = {}
+    end
+    table.insert(HealBot_Options_SelectHealSpellsCombo_List_V2[HealBot_PlayerRaceEN],spell)
+end
+
+function Healbot_Options_RedoSelectHealSpellsCombotDropDown()
+    
+end
 local HealBot_Options_BuffTxt_List = {
     HEALBOT_WORDS_NONE,
     HEALBOT_OPTIONS_BUFFSELF,
@@ -766,7 +779,6 @@ local HealBot_Options_BuffTxt_List = {
 }
 local HealBot_Buff_Spells_Class_List = {}
 local HealBot_Buff_Spells_List = {}
-
 local HealBot_Debuff_Spells = {
     [HEALBOT_PALADIN] = {
         HEALBOT_PURIFY,
@@ -858,6 +870,7 @@ local HealBot_Debuff_Spells = {
     },
     [HEALBOT_VENOMANCER] = {
         HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Antivenom,
+        HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Blight_Antidote,
     },
     [HEALBOT_REAPER] = {
 
@@ -875,7 +888,7 @@ local HealBot_Debuff_Spells = {
     },
     [HEALBOT_WITCHHUNTER] = {},
     [HEALBOT_BARBARIAN] = {},
-
+    [HEALBOT_BLOODMAGE] = {},
 }
 local HealBot_Debuff_Types = {
     [HEALBOT_CLASS_SPELLS[HEALBOT_HERO].Remove_Corruption] = {
@@ -974,6 +987,9 @@ local HealBot_Debuff_Types = {
     [HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Antivenom] = {
         HEALBOT_POISON_en
     },
+    [HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Blight_Antidote] ={
+        HEALBOT_CURSE_en
+    },
     [HEALBOT_CLASS_SPELLS[HEALBOT_WITCH_DOCTOR].WichDoctor_Allcure_Elixir] = {
         HEALBOT_POISON_en
     },
@@ -1005,7 +1021,6 @@ local HealBot_Debuff_Types = {
         HEALBOT_MAGIC_en,
     },
 }
-
 local HealBot_Racial_Debuff_Spells = {
     ["Human"] = {},
     ["Dwarf"] = { HEALBOT_STONEFORM, },
@@ -1034,7 +1049,6 @@ local HealBot_Racial_Debuff_Spells = {
     ["EarthenDwarf"] = {},
 }
 local CPUProfiler = 0
-local tmpDebugThrottle = GetTime()
 local hbOptGetSkinFrom = " "
 local hbOptGetSkinName = " "
 
@@ -1042,7 +1056,6 @@ local usable = nil
 local HealBot_DebuffWatchTargetSpell = nil
 local FirstDebuffLoad = true
 local spells = {}
-local Monitor_Buffs = nil
 local HealBot_BuffWatchTargetSpell = nil
 local FirstBuffLoad = true
 
@@ -1190,7 +1203,6 @@ local hbOptUsers = {}
 local hbShareSkin = 1
 local hbTempUnitNames = {}
 local hbTempNumUnitNames = 0
-local hbMyGuild = GetGuildInfo("player")
 local hbMyGuildMates = {}
 local hbMyFriends = {}
 local hbOptCompatUsers = {}
@@ -4096,6 +4108,7 @@ local HealBot_Options_SelectOtherSpellsCombo_List = {
     [HEALBOT_VENOMANCER] = {
         HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Prayer_Beads,
         HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Antivenom,
+        HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Blight_Antidote,
     },
     [HEALBOT_REAPER] = {},
     [HEALBOT_PRIMALIST] = {

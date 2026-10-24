@@ -179,7 +179,8 @@ local HealBot_Ignore_Class_Debuffs = {
 
     },
     [HEALBOT_WITCHHUNTER] = {},
-    [HEALBOT_BARBARIAN] = {}
+    [HEALBOT_BARBARIAN] = {},
+    [HEALBOT_BLOODMAGE] = {}
 
 };
 
@@ -231,13 +232,9 @@ local sender = nil
 local arr = nil
 local arrg = {}
 local HoTActive = nil
-local DebuffType = nil
 local checkthis = nil
 local WatchTarget = nil
 local WatchGUID = nil
-local debuff_type = nil
-local dName = nil
-local HealBot_Ignore_Debuffs_Class = nil
 local bName = nil
 local PlayerBuffs = {}
 local HealBot_dSpell = HEALBOT_HEAVY_RUNECLOTH_BANDAGE
@@ -293,7 +290,7 @@ local debuffCodes = {
     [HEALBOT_CURSE_en] = 8,
     [HEALBOT_CUSTOM_en] = 9,
     [HEALBOT_BLEED_en] = 10,
-    
+
 }
 local HealBot_VehicleUnit = {}
 local HealBot_UnitInVehicle = {}
@@ -642,8 +639,6 @@ function HealBot_CheckFrame()
         end
     end
 end
-
-
 
 function HealBot_setResetFlagCode(resetCode)
     HealBot_Reset_flag = resetCode
@@ -1775,7 +1770,7 @@ function HealBot_OnEvent_VariablesLoaded(self)
         }
     elseif HealBot_PlayerClass_ER == HEALBOT_WITCH_DOCTOR then
         HealBot_BuffNameSwap[HEALBOT_CLASS_SPELLS[HEALBOT_WITCH_DOCTOR].WichDoctor_Spirit_Of_Sen_jin] =
-        HEALBOT_CLASS_SPELLS[HEALBOT_WITCH_DOCTOR].WichDoctor_Greater_Spirit_Of_Sen_jin
+            HEALBOT_CLASS_SPELLS[HEALBOT_WITCH_DOCTOR].WichDoctor_Greater_Spirit_Of_Sen_jin
     else
         HealBot_BuffNameSwap = {}
     end
@@ -3065,29 +3060,30 @@ function HealBot_ClearAllDebuffs(hbGUID)
         end
     end
 end
+
 local myhTargets = {}
 local trackdebuffIcon = {}
 -- Main entry point
 function HealBot_CheckUnitDebuffs(hbGUID)
     local xUnit = HealBot_ValidateUnit(hbGUID)
     if not xUnit then return end
-    
+
     local debuffClass = HealBot_GetDebuffClass(xUnit)
     local curDebuffs = HealBot_ScanUnitDebuffs(xUnit)
     local debuffInfo = HealBot_FindHighestPriorityDebuff(hbGUID, curDebuffs, debuffClass)
-    
+
     HealBot_ProcessDebuffChange(hbGUID, xUnit, debuffInfo, debuffClass)
 end
 
 -- Validates that the unit exists and has a button
 function HealBot_ValidateUnit(hbGUID)
     if not HealBot_UnitID[hbGUID] then return nil end
-    
+
     local xUnit = HealBot_UnitID[hbGUID]
     if not xUnit or not HealBot_Unit_Button[xUnit] or not UnitExists(xUnit) then
         return nil
     end
-    
+
     return xUnit
 end
 
@@ -3104,23 +3100,23 @@ end
 function HealBot_ScanUnitDebuffs(xUnit)
     local curDebuffs = {}
     local y = 1
-    
+
     while true do
         local dName, _, _, _, debuff_type, debuffDuration = UnitDebuff(xUnit, y)
         if not dName then break end
-        
+
         y = y + 1
         curDebuffs[dName] = {}
-        
+
         if HealBot_Config.HealBot_Custom_Debuffs[dName] then
             debuff_type = HEALBOT_CUSTOM_en
         end
-        
+
         curDebuffs[dName]["priority"] = HealBot_Options_retDebuffPriority(dName, debuff_type)
         curDebuffs[dName]["type"] = debuff_type
         curDebuffs[dName]["duration"] = debuffDuration
     end
-    
+
     return curDebuffs
 end
 
@@ -3129,18 +3125,18 @@ function HealBot_FindHighestPriorityDebuff(hbGUID, curDebuffs, debuffClass)
     local currentDebuffName = HealBot_UnitDebuff[hbGUID] and HealBot_UnitDebuff[hbGUID]["name"] or "x"
     local bestDebuff = nil
     local bestPriority = 100
-    
+
     for dName, debuffData in pairs(curDebuffs) do
         if debuffData["priority"] < bestPriority then
             local shouldCheck = HealBot_ShouldCheckDebuff(
-                hbGUID, 
-                dName, 
-                debuffData["type"], 
+                hbGUID,
+                dName,
+                debuffData["type"],
                 debuffData["duration"],
                 currentDebuffName,
                 debuffClass
             )
-            
+
             if shouldCheck then
                 bestDebuff = {
                     name = dName,
@@ -3152,7 +3148,7 @@ function HealBot_FindHighestPriorityDebuff(hbGUID, curDebuffs, debuffClass)
             end
         end
     end
-    
+
     return bestDebuff
 end
 
@@ -3162,52 +3158,52 @@ function HealBot_ShouldCheckDebuff(hbGUID, dName, debuff_type, debuffDuration, c
     if dName == currentDebuffName then
         return true
     end
-    
+
     -- Get watch target settings
     local watchTarget, watchGUID = HealBot_GetDebuffWatchTarget(dName, debuff_type, hbGUID)
     if not watchTarget then
         return false
     end
-    
+
     -- Check if unit matches watch target criteria
     local matchesTarget = HealBot_MatchesWatchTarget(hbGUID, watchTarget, watchGUID, debuffClass)
     if not matchesTarget then
         return false
     end
-    
+
     -- Apply ignore filters (only for non-custom debuffs)
     if debuff_type ~= HEALBOT_CUSTOM_en then
         return HealBot_PassesDebuffFilters(dName, debuffDuration, debuffClass)
     end
-    
+
     return true
 end
 
 -- Gets watch target settings for a debuff
 function HealBot_GetDebuffWatchTarget(dName, debuff_type, hbGUID)
     local watchTarget, watchGUID
-    
+
     if HealBot_Config.HealBot_Custom_Debuffs[dName] then
         watchTarget = { ["Raid"] = true }
     else
         watchTarget, watchGUID = HealBot_Options_retDebuffWatchTarget(debuff_type, hbGUID)
     end
-    
+
     -- Special case for poison/abolish disease interaction
-    if debuff_type == HEALBOT_POISON_en and 
-       HealBot_DebuffSpell[HEALBOT_DISEASE_en] == HEALBOT_ABOLISH_DISEASE and
-       not HealBot_DebuffSpell[HEALBOT_POISON_en] and
-       HealBot_Talents[HEALBOT_BODY_AND_SOUL] > 0 then
+    if debuff_type == HEALBOT_POISON_en and
+        HealBot_DebuffSpell[HEALBOT_DISEASE_en] == HEALBOT_ABOLISH_DISEASE and
+        not HealBot_DebuffSpell[HEALBOT_POISON_en] and
+        HealBot_Talents[HEALBOT_BODY_AND_SOUL] > 0 then
         watchTarget = { ["Self"] = true }
     end
-    
+
     return watchTarget, watchGUID
 end
 
 -- Checks if a unit matches the watch target criteria
 function HealBot_MatchesWatchTarget(hbGUID, watchTarget, watchGUID, debuffClass)
     local xUnit = HealBot_UnitID[hbGUID]
-    
+
     if watchTarget["Raid"] then
         return true
     elseif watchTarget["Party"] and (UnitInParty(xUnit) or hbGUID == HealBot_PlayerGUID) then
@@ -3227,7 +3223,7 @@ function HealBot_MatchesWatchTarget(hbGUID, watchTarget, watchGUID, debuffClass)
     elseif watchTarget["MyTargets"] then
         return HealBot_IsInMyHealTargets(hbGUID)
     end
-    
+
     return false
 end
 
@@ -3238,19 +3234,19 @@ function HealBot_IsInTankList(hbGUID)
             return true
         end
     end
-    
+
     for i = 1, #HealBot_MainAssists do
         if hbGUID == HealBot_MainAssists[i] then
             return true
         end
     end
-    
+
     for i = 1, #HealBot_CTRATanks do
         if hbGUID == HealBot_CTRATanks[i] then
             return true
         end
     end
-    
+
     return false
 end
 
@@ -3270,16 +3266,16 @@ function HealBot_PassesDebuffFilters(dName, debuffDuration, debuffClass)
     if HealBot_Config.IgnoreMovementDebuffs == 1 and HealBot_Ignore_Movement_Debuffs[dName] then
         return false
     end
-    
-    if HealBot_Config.IgnoreFastDurDebuffs == 1 and debuffDuration and 
-       debuffDuration < HealBot_Config.IgnoreFastDurDebuffsSecs then
+
+    if HealBot_Config.IgnoreFastDurDebuffs == 1 and debuffDuration and
+        debuffDuration < HealBot_Config.IgnoreFastDurDebuffsSecs then
         return false
     end
-    
+
     if HealBot_Config.IgnoreNonHarmfulDebuffs == 1 and HealBot_Ignore_NonHarmful_Debuffs[dName] then
         return false
     end
-    
+
     if HealBot_Config.IgnoreClassDebuffs == 1 then
         if HealBot_Ignore_Class_Debuffs then
             local ignoreDebuffsClass = HealBot_Ignore_Class_Debuffs[debuffClass]
@@ -3288,23 +3284,23 @@ function HealBot_PassesDebuffFilters(dName, debuffDuration, debuffClass)
             end
         end
     end
-    
+
     return true
 end
 
 -- Processes debuff changes (new, updated, or removed)
 function HealBot_ProcessDebuffChange(hbGUID, xUnit, debuffInfo, debuffClass)
     local oldDebuffName = HealBot_UnitDebuff[hbGUID] and HealBot_UnitDebuff[hbGUID]["name"] or nil
-    
+
     if not debuffInfo then
         HealBot_HandleDebuffRemoved(hbGUID, xUnit)
     else
         HealBot_UpdateUnitDebuff(hbGUID, debuffInfo)
-        
+
         if debuffInfo.name ~= oldDebuffName then
             HealBot_HandleNewDebuff(hbGUID, xUnit, debuffInfo)
         end
-        
+
         HealBot_UpdateDebuffIcon(hbGUID, xUnit, debuffInfo.name, oldDebuffName)
     end
 end
@@ -3312,19 +3308,19 @@ end
 -- Handles when a debuff is removed from a unit
 function HealBot_HandleDebuffRemoved(hbGUID, xUnit)
     if not HealBot_UnitDebuff[hbGUID] then return end
-    
+
     local oldDebuffName = HealBot_UnitDebuff[hbGUID]["name"]
-    
+
     -- Clean up HoT tracking
-    if HealBot_Player_HoT[hbGUID] and 
-       HealBot_Player_HoT[hbGUID][HealBot_PlayerGUID .. "!" .. oldDebuffName] then
+    if HealBot_Player_HoT[hbGUID] and
+        HealBot_Player_HoT[hbGUID][HealBot_PlayerGUID .. "!" .. oldDebuffName] then
         HealBot_Player_HoT[hbGUID][HealBot_PlayerGUID .. "!" .. oldDebuffName] = 10
         HealBot_HoT_Update(hbGUID, HealBot_PlayerGUID .. "!" .. oldDebuffName)
         trackdebuffIcon[hbGUID] = nil
     end
-    
+
     HealBot_UnitDebuff[hbGUID] = nil
-    
+
     -- Update UI
     if HealBot_ThrottleCnt > 5 then
         HealBot_Action_ResetUnitStatus(xUnit)
@@ -3332,7 +3328,7 @@ function HealBot_HandleDebuffRemoved(hbGUID, xUnit)
         HealBot_RecalcHeals(hbGUID)
         HealBot_ThrottleCnt = HealBot_ThrottleCnt + 1
     end
-    
+
     -- Update aggro bars
     if HealBot_Config.CDCshownAB == 1 then
         HealBot_Action_SetUnitDebuffStatus(hbGUID)
@@ -3350,10 +3346,10 @@ end
 
 -- Updates the unit's debuff information
 function HealBot_UpdateUnitDebuff(hbGUID, debuffInfo)
-    if not HealBot_UnitDebuff[hbGUID] then 
-        HealBot_UnitDebuff[hbGUID] = {} 
+    if not HealBot_UnitDebuff[hbGUID] then
+        HealBot_UnitDebuff[hbGUID] = {}
     end
-    
+
     HealBot_UnitDebuff[hbGUID]["type"] = debuffInfo.type
     HealBot_UnitDebuff[hbGUID]["name"] = debuffInfo.name
 end
@@ -3361,26 +3357,26 @@ end
 -- Handles when a new debuff is detected on a unit
 function HealBot_HandleNewDebuff(hbGUID, xUnit, debuffInfo)
     local inSpellRange = HealBot_UnitInRange(HealBot_dSpell, xUnit)
-    
+
     -- Update aggro bars
-    if HealBot_Config.CDCshownAB == 1 and 
-       inSpellRange > (HealBot_Config.HealBot_CDCWarnRange_Aggro - 3) then
+    if HealBot_Config.CDCshownAB == 1 and
+        inSpellRange > (HealBot_Config.HealBot_CDCWarnRange_Aggro - 3) then
         HealBot_Action_SetUnitDebuffStatus(hbGUID, debuffCodes[debuffInfo.type])
         HealBot_Action_UpdateAggro(xUnit, "debuff", debuffCodes[debuffInfo.type], hbGUID)
     end
-    
+
     -- Show screen warning
-    if HealBot_Config.ShowDebuffWarning == 1 and 
-       inSpellRange > (HealBot_Config.HealBot_CDCWarnRange_Screen - 3) then
+    if HealBot_Config.ShowDebuffWarning == 1 and
+        inSpellRange > (HealBot_Config.HealBot_CDCWarnRange_Screen - 3) then
         HealBot_ShowDebuffWarning(xUnit, debuffInfo.name, debuffInfo.type)
     end
-    
+
     -- Play sound warning
-    if HealBot_Config.SoundDebuffWarning == 1 and 
-       inSpellRange > (HealBot_Config.HealBot_CDCWarnRange_Sound - 3) then
+    if HealBot_Config.SoundDebuffWarning == 1 and
+        inSpellRange > (HealBot_Config.HealBot_CDCWarnRange_Sound - 3) then
         HealBot_PlaySound(HealBot_Config.SoundDebuffPlay)
     end
-    
+
     -- Update UI
     if inSpellRange > -1 then
         if HealBot_ThrottleCnt > 5 then
@@ -3397,7 +3393,7 @@ end
 -- Shows a debuff warning message
 function HealBot_ShowDebuffWarning(xUnit, debuffName, debuffType)
     local color = HealBot_Config.CDCBarColour[debuffName] or HealBot_Config.CDCBarColour[debuffType]
-    
+
     UIErrorsFrame:AddMessage(
         UnitName(xUnit) .. " suffers from " .. debuffName,
         color.R,
@@ -3411,14 +3407,14 @@ end
 -- Updates the debuff icon display
 function HealBot_UpdateDebuffIcon(hbGUID, xUnit, debuffName, oldDebuffName)
     if not HealBot_UnitDebuff[hbGUID] then return end
-    
-    if Healbot_Config_Skins.ShowDebuffIcon[Healbot_Config_Skins.Current_Skin] ~= 1 or 
-       not UnitIsVisible(xUnit) then
+
+    if Healbot_Config_Skins.ShowDebuffIcon[Healbot_Config_Skins.Current_Skin] ~= 1 or
+        not UnitIsVisible(xUnit) then
         return
     end
-    
+
     local dName, _, deBuffTexture, bCount, _, _, expirationTime = UnitDebuff(xUnit, debuffName)
-    
+
     if dName then
         HealBot_ProcessDebuffIconDisplay(hbGUID, dName, deBuffTexture, bCount, expirationTime)
     elseif oldDebuffName then
@@ -3432,9 +3428,9 @@ function HealBot_ProcessDebuffIconDisplay(hbGUID, dName, deBuffTexture, bCount, 
     if not HealBot_DeBuff_Texture[dName] and deBuffTexture then
         HealBot_DeBuff_Texture[dName] = deBuffTexture
     end
-    
+
     if not HealBot_DeBuff_Texture[dName] then return end
-    
+
     -- Update tracked icon
     if not trackdebuffIcon[hbGUID] then
         trackdebuffIcon[hbGUID] = dName
@@ -3442,17 +3438,17 @@ function HealBot_ProcessDebuffIconDisplay(hbGUID, dName, deBuffTexture, bCount, 
         HealBot_CleanupOldDebuffIcon(hbGUID, trackdebuffIcon[hbGUID])
         trackdebuffIcon[hbGUID] = dName
     end
-    
+
     -- Set up HoT tracking for icon
-    if not HealBot_Player_HoT[hbGUID] then 
-        HealBot_Player_HoT[hbGUID] = {} 
+    if not HealBot_Player_HoT[hbGUID] then
+        HealBot_Player_HoT[hbGUID] = {}
     end
-    
+
     if not bCount then bCount = 1 end
     if (expirationTime or 0) == 0 then expirationTime = hbNoEndTime end
-    
+
     local hotKey = HealBot_PlayerGUID .. "!" .. dName
-    
+
     -- Update count or expiration
     if (DeBuff_Count[hbGUID] or -1) ~= bCount then
         DeBuff_Count[hbGUID] = bCount
@@ -3460,15 +3456,15 @@ function HealBot_ProcessDebuffIconDisplay(hbGUID, dName, deBuffTexture, bCount, 
     elseif not HealBot_Player_HoT[hbGUID][hotKey] then
         HealBot_Player_HoT[hbGUID][hotKey] = expirationTime + 1
     end
-    
+
     -- Initialize icon tracking
-    if not HealBot_Player_HoT_Icons[hbGUID] then 
-        HealBot_Player_HoT_Icons[hbGUID] = {} 
+    if not HealBot_Player_HoT_Icons[hbGUID] then
+        HealBot_Player_HoT_Icons[hbGUID] = {}
     end
-    if not HealBot_Player_HoT_Icons[hbGUID][hotKey] then 
-        HealBot_Player_HoT_Icons[hbGUID][hotKey] = 0 
+    if not HealBot_Player_HoT_Icons[hbGUID][hotKey] then
+        HealBot_Player_HoT_Icons[hbGUID][hotKey] = 0
     end
-    
+
     -- Update if expiration changed
     if HealBot_Player_HoT[hbGUID][hotKey] ~= expirationTime then
         HealBot_Player_HoT[hbGUID][hotKey] = expirationTime
@@ -3479,7 +3475,7 @@ end
 -- Cleans up old debuff icon tracking
 function HealBot_CleanupOldDebuffIcon(hbGUID, debuffName)
     local hotKey = HealBot_PlayerGUID .. "!" .. debuffName
-    
+
     if HealBot_Player_HoT[hbGUID] and HealBot_Player_HoT[hbGUID][hotKey] then
         HealBot_Player_HoT[hbGUID][hotKey] = 10
         HealBot_HoT_Update(hbGUID, hotKey)
