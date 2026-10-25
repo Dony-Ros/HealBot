@@ -279,7 +279,7 @@ local HealBot_Buff_Spells_Total_List = {
         HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Gift_of_Shadra,
         HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Spider_Pheromones,
         HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Beetle_Pheromones,
-        
+
     },
     [HEALBOT_REAPER] = {
 
@@ -384,8 +384,6 @@ local HealBot_Options_Class_HoTctlName_List = {
     [HEALBOT_CLASS_SPELLS[HEALBOT_TINKER].Nanobot_Barrier] = HEALBOT_TINKER,
     [HEALBOT_CLASS_SPELLS[HEALBOT_DRUID].Florish_buff] = HEALBOT_DRUID,
 
-
-
 }
 local HealBot_Options_Classless_HoTctlName_List = {
     [HEALBOT_GIFT_OF_THE_NAARU] = "ALL",
@@ -459,6 +457,68 @@ local HealBot_Options_Classless_HoTctlName_List = {
     [HEALBOT_UNBREAKABLE_ARMOR] = HEALBOT_HERO,
     [HEALBOT_BONE_SHIELD] = HEALBOT_HERO,
     [HEALBOT_MENDPET] = HEALBOT_HERO,
+
+}
+local HealBot_Options_SelectOtherSpellsCombo_List = {
+    [HEALBOT_WARRIOR] = {},
+    [HEALBOT_ROGUE] = {},
+    [HEALBOT_HUNTER] = {},
+    [HEALBOT_MAGE] = {},
+    [HEALBOT_DRUID] = {
+        HEALBOT_CURE_POISON,
+        HEALBOT_REMOVE_CURSE,
+        HEALBOT_ABOLISH_POISON,
+        HEALBOT_REVIVE,
+        HEALBOT_REBIRTH
+    },
+    [HEALBOT_PALADIN] = HEALBOT_CLASS_SPELLS[HEALBOT_PALADIN],
+    [HEALBOT_PRIEST] = HEALBOT_CLASS_SPELLS[HEALBOT_PRIEST],
+    [HEALBOT_SHAMAN] = HEALBOT_CLASS_SPELLS[HEALBOT_SHAMAN],
+    [HEALBOT_WARLOCK] = HEALBOT_CLASS_SPELLS[HEALBOT_WARLOCK],
+    [HEALBOT_DEATHKNIGHT] = HEALBOT_CLASS_SPELLS[HEALBOT_DEATHKNIGHT],
+    [HEALBOT_HERO] = HEALBOT_CLASS_SPELLS[HEALBOT_HERO],
+    [HEALBOT_WITCH_DOCTOR] = {},
+    [HEALBOT_DEMON_HUNTER] = {},
+    [HEALBOT_STORMBRINGER] = {},
+    [HEALBOT_KNIGHT_OF_XOROTH] = {},
+    [HEALBOT_GUARDIAN] = {},
+    [HEALBOT_MONK] = {},
+    [HEALBOT_RANGER] = {},
+    [HEALBOT_CHRONOMANCER] = {},
+    [HEALBOT_NECROMANCER] = {},
+    [HEALBOT_PYROMANCER] = {
+        HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Reborn_from_Ash,
+        HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Phoenix_Rebirth,
+        HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Cauterize,
+    },
+    [HEALBOT_CULTIST] = {},
+    [HEALBOT_STARCALLER] = {
+        HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Prayer_of_Elune,
+        HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Elune_s_Purification,
+    },
+    [HEALBOT_TINKER] = {},
+    [HEALBOT_VENOMANCER] = {
+        HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Prayer_Beads,
+        HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Antivenom,
+        HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Blight_Antidote,
+    },
+    [HEALBOT_REAPER] = {},
+    [HEALBOT_PRIMALIST] = {
+        HEALBOT_CLASS_SPELLS[HEALBOT_PRIMALIST].Return_to_Life,
+        HEALBOT_CLASS_SPELLS[HEALBOT_PRIMALIST].Venomshake,
+    },
+    [HEALBOT_RUNEMASTER] = {},
+    [HEALBOT_SUNCLERIC] = {
+        HEALBOT_CLASS_SPELLS[HEALBOT_SUNCLERIC].SunCleric_Sanctify,
+        HEALBOT_CLASS_SPELLS[HEALBOT_SUNCLERIC].Shatter_Magic,
+    },
+    [HEALBOT_WITCH_DOCTOR] = {
+        HEALBOT_CLASS_SPELLS[HEALBOT_WITCH_DOCTOR].WichDoctor_Reclaim_Soul,
+        HEALBOT_CLASS_SPELLS[HEALBOT_WITCH_DOCTOR].WichDoctor_Hexbreak,
+        HEALBOT_CLASS_SPELLS[HEALBOT_WITCH_DOCTOR].WichDoctor_Magicbreak,
+    },
+    [HEALBOT_WITCHHUNTER] = {},
+    [HEALBOT_BARBARIAN] = {},
 
 }
 local HealBot_Options_ComboButtons_Button = 1;
@@ -645,7 +705,7 @@ local HealBot_Options_SelectHealSpellsCombo_List_V2 = {
     [HEALBOT_KNIGHT_OF_XOROTH] = {},
     [HEALBOT_GUARDIAN] = {},
     [HEALBOT_MONK] = {},
-    [HEALBOT_BLOODMAGE] ={
+    [HEALBOT_BLOODMAGE] = {
         HEALBOT_CLASS_SPELLS[HEALBOT_BLOODMAGE].Sanguine_Mend,
     },
     [HEALBOT_RANGER] = {},
@@ -671,7 +731,7 @@ local HealBot_Options_SelectHealSpellsCombo_List_V2 = {
         HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Cauterize,
 
     },
-    [HEALBOT_STARCALLER] = 
+    [HEALBOT_STARCALLER] =
     {
         HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Moonwell_Splash,
         HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Celestial_Awakening,
@@ -744,12 +804,13 @@ function Healbot_Options_Add_SelectHealSpellsCombo_List(spell)
     if not HealBot_Options_SelectHealSpellsCombo_List_V2[HealBot_PlayerRaceEN] then
         HealBot_Options_SelectHealSpellsCombo_List_V2[HealBot_PlayerRaceEN] = {}
     end
-    table.insert(HealBot_Options_SelectHealSpellsCombo_List_V2[HealBot_PlayerRaceEN],spell)
+    table.insert(HealBot_Options_SelectHealSpellsCombo_List_V2[HealBot_PlayerRaceEN], spell)
 end
 
 function Healbot_Options_RedoSelectHealSpellsCombotDropDown()
-    
+
 end
+
 local HealBot_Options_BuffTxt_List = {
     HEALBOT_WORDS_NONE,
     HEALBOT_OPTIONS_BUFFSELF,
@@ -900,9 +961,6 @@ local HealBot_Debuff_Types = {
         HEALBOT_CURSE_en,
         HEALBOT_POISON_en
     },
-    [HEALBOT_CLASS_SPELLS[HEALBOT_DRUID].RemoveCurse] = {
-        HEALBOT_CURSE_en,
-    },
     [Cleasing_Totem] = {
         HEALBOT_DISEASE_en,
         HEALBOT_POISON_en,
@@ -987,7 +1045,7 @@ local HealBot_Debuff_Types = {
     [HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Antivenom] = {
         HEALBOT_POISON_en
     },
-    [HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Blight_Antidote] ={
+    [HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Blight_Antidote] = {
         HEALBOT_CURSE_en
     },
     [HEALBOT_CLASS_SPELLS[HEALBOT_WITCH_DOCTOR].WichDoctor_Allcure_Elixir] = {
@@ -4002,128 +4060,7 @@ end
 --------------------------------------------------------------------------------
 
 local HealBot_SelectOtherSpellsCombo = 1;
-local HealBot_Options_SelectOtherSpellsCombo_List = {
-    [HEALBOT_WARRIOR] = {},
-    [HEALBOT_ROGUE] = {},
-    [HEALBOT_HUNTER] = {},
-    [HEALBOT_MAGE] = {},
-    [HEALBOT_DRUID] = {
-        HEALBOT_CURE_POISON,
-        HEALBOT_REMOVE_CURSE,
-        HEALBOT_ABOLISH_POISON,
-        HEALBOT_REVIVE,
-        HEALBOT_REBIRTH
-    },
-    [HEALBOT_PALADIN] = {
-        HEALBOT_PURIFY,
-        HEALBOT_CLEANSE,
-        HEALBOT_REDEMPTION,
-        HEALBOT_DIVINE_FAVOR,
-        HEALBOT_DIVINE_ILLUMINATION,
-        HEALBOT_DIVINE_PLEA,
-        HEALBOT_DIVINE_SHIELD,
-        HEALBOT_RIGHTEOUS_DEFENSE,
 
-    },
-    [HEALBOT_PRIEST] = {
-        HEALBOT_RESURRECTION,
-        HEALBOT_GUARDIAN_SPIRIT,
-        HEALBOT_CURE_DISEASE,
-        HEALBOT_INNER_FOCUS
-    },
-    [HEALBOT_SHAMAN] = {
-        HEALBOT_CLEANSE_SPIRIT,
-        HEALBOT_ANCESTRALSPIRIT,
-        HEALBOT_CURE_TOXINS,
-        HEALBOT_CALL_OF_THE_ELEMENTS
-    },
-    [HEALBOT_WARLOCK] = {
-        HEALBOT_LIFE_TAP,
-    },
-    [HEALBOT_DEATHKNIGHT] = {
-        HEALBOT_HYSTERIA,
-    },
-    [HEALBOT_HERO] = {
-
-        HEALBOT_STONEFORM,
-        HEALBOT_INSPIRATION,
-        HEALBOT_POWER_WORD_SHIELD,
-        HEALBOT_REVIVE,
-        HEALBOT_GUARDIAN_SPIRIT,
-        HEALBOT_PURIFICATION,
-        HEALBOT_INTERVENE,
-        HEALBOT_RESURRECTION,
-        HEALBOT_REDEMPTION,
-        HEALBOT_REBIRTH,
-        HEALBOT_INNERVATE,
-        HEALBOT_ANCESTRALSPIRIT,
-        HEALBOT_PURIFY,
-        HEALBOT_CLEANSE,
-        HEALBOT_CURE_POISON,
-        HEALBOT_REMOVE_CURSE,
-        HEALBOT_ABOLISH_POISON,
-        HEALBOT_CURE_DISEASE,
-        HEALBOT_ABOLISH_DISEASE,
-        HEALBOT_DISPEL_MAGIC,
-        HEALBOT_CLEANSE_SPIRIT,
-        HEALBOT_CURE_TOXINS,
-        HEALBOT_HYSTERIA,
-        HEALBOT_LIFE_TAP,
-        HEALBOT_DIVINE_FAVOR,
-        HEALBOT_DIVINE_ILLUMINATION,
-        HEALBOT_DIVINE_PLEA,
-        HEALBOT_DIVINE_SHIELD,
-        HEALBOT_RIGHTEOUS_DEFENSE,
-        HEALBOT_NATURE_SWIFTNESS,
-        HEALBOT_INNER_FOCUS,
-        HEALBOT_CALL_OF_THE_ELEMENTS,
-    },
-    [HEALBOT_WITCH_DOCTOR] = {},
-    [HEALBOT_DEMON_HUNTER] = {},
-    [HEALBOT_STORMBRINGER] = {},
-    [HEALBOT_KNIGHT_OF_XOROTH] = {},
-    [HEALBOT_GUARDIAN] = {},
-    [HEALBOT_MONK] = {},
-
-    [HEALBOT_RANGER] = {},
-    [HEALBOT_CHRONOMANCER] = {},
-    [HEALBOT_NECROMANCER] = {},
-    [HEALBOT_PYROMANCER] = {
-        HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Reborn_from_Ash,
-        HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Phoenix_Rebirth,
-        HEALBOT_CLASS_SPELLS[HEALBOT_PYROMANCER].Cauterize,
-    },
-    [HEALBOT_CULTIST] = {},
-    [HEALBOT_STARCALLER] = 
-    {
-        HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Prayer_of_Elune,
-        HEALBOT_CLASS_SPELLS[HEALBOT_STARCALLER].Elune_s_Purification,
-    },
-    [HEALBOT_TINKER] = {},
-    [HEALBOT_VENOMANCER] = {
-        HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Venomancer_Prayer_Beads,
-        HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Antivenom,
-        HEALBOT_CLASS_SPELLS[HEALBOT_VENOMANCER].Blight_Antidote,
-    },
-    [HEALBOT_REAPER] = {},
-    [HEALBOT_PRIMALIST] = {
-        HEALBOT_CLASS_SPELLS[HEALBOT_PRIMALIST].Return_to_Life,
-        HEALBOT_CLASS_SPELLS[HEALBOT_PRIMALIST].Venomshake,
-    },
-    [HEALBOT_RUNEMASTER] = {},
-    [HEALBOT_SUNCLERIC] = {
-        HEALBOT_CLASS_SPELLS[HEALBOT_SUNCLERIC].SunCleric_Sanctify,
-        HEALBOT_CLASS_SPELLS[HEALBOT_SUNCLERIC].Shatter_Magic,
-    },
-    [HEALBOT_WITCH_DOCTOR] = {
-        HEALBOT_CLASS_SPELLS[HEALBOT_WITCH_DOCTOR].WichDoctor_Reclaim_Soul,
-        HEALBOT_CLASS_SPELLS[HEALBOT_WITCH_DOCTOR].WichDoctor_Hexbreak,
-        HEALBOT_CLASS_SPELLS[HEALBOT_WITCH_DOCTOR].WichDoctor_Magicbreak,
-    },
-    [HEALBOT_WITCHHUNTER] = {},
-    [HEALBOT_BARBARIAN] = {},
-
-}
 local hbHelpOtherSelect = nil
 local hbOtherDDlist = nil
 

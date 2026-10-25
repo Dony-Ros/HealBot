@@ -79,6 +79,47 @@ HEALBOT_SHADOW_PRISION                   = GetSpellInfo(5011055) or "Shadow Pris
 HEALBOT_CURSE_OF_AGONY                   = GetSpellInfo(14868) or "Curse of Agony";
 HEALBOT_CORRUPTION                       = GetSpellInfo(25311) or "Corruption";
 HEALBOT_CLASS_SPELLS                     = {
+    [HEALBOT_WARRIOR] = {},
+    [HEALBOT_ROGUE] = {},
+    [HEALBOT_HUNTER] = {},
+    [HEALBOT_MAGE] = {},
+    [HEALBOT_DRUID] = {
+        HEALBOT_CURE_POISON,
+        HEALBOT_REMOVE_CURSE,
+        HEALBOT_ABOLISH_POISON,
+        HEALBOT_REVIVE,
+        HEALBOT_REBIRTH,
+        Florish_buff = "Flourish",--i think this was for Bronzebeard realm.
+    },
+    [HEALBOT_PALADIN] = {
+        HEALBOT_PURIFY,
+        HEALBOT_CLEANSE,
+        HEALBOT_REDEMPTION,
+        HEALBOT_DIVINE_FAVOR,
+        HEALBOT_DIVINE_ILLUMINATION,
+        HEALBOT_DIVINE_PLEA,
+        HEALBOT_DIVINE_SHIELD,
+        HEALBOT_RIGHTEOUS_DEFENSE,
+
+    },
+    [HEALBOT_PRIEST] = {
+        HEALBOT_RESURRECTION,
+        HEALBOT_GUARDIAN_SPIRIT,
+        HEALBOT_CURE_DISEASE,
+        HEALBOT_INNER_FOCUS
+    },
+    [HEALBOT_SHAMAN] = {
+        HEALBOT_CLEANSE_SPIRIT,
+        HEALBOT_ANCESTRALSPIRIT,
+        HEALBOT_CURE_TOXINS,
+        HEALBOT_CALL_OF_THE_ELEMENTS
+    },
+    [HEALBOT_WARLOCK] = {
+        HEALBOT_LIFE_TAP,
+    },
+    [HEALBOT_DEATHKNIGHT] = {
+        HEALBOT_HYSTERIA,
+    },
     [HEALBOT_TINKER] = {
         Med_Pack = "Med Pack",
         Zap = "Zap!",
@@ -206,15 +247,43 @@ HEALBOT_CLASS_SPELLS                     = {
         Boon_of_the_Bear        = "Boon of the Bear",
     },
     [HEALBOT_HERO] = {
+        HEALBOT_STONEFORM,
+        HEALBOT_INSPIRATION,
+        HEALBOT_POWER_WORD_SHIELD,
+        HEALBOT_REVIVE,
+        HEALBOT_GUARDIAN_SPIRIT,
+        HEALBOT_PURIFICATION,
+        HEALBOT_INTERVENE,
+        HEALBOT_RESURRECTION,
+        HEALBOT_REDEMPTION,
+        HEALBOT_REBIRTH,
+        HEALBOT_INNERVATE,
+        HEALBOT_ANCESTRALSPIRIT,
+        HEALBOT_PURIFY,
+        HEALBOT_CLEANSE,
+        HEALBOT_CURE_POISON,
+        HEALBOT_REMOVE_CURSE,
+        HEALBOT_ABOLISH_POISON,
+        HEALBOT_CURE_DISEASE,
+        HEALBOT_ABOLISH_DISEASE,
+        HEALBOT_DISPEL_MAGIC,
+        HEALBOT_CLEANSE_SPIRIT,
+        HEALBOT_CURE_TOXINS,
+        HEALBOT_HYSTERIA,
+        HEALBOT_LIFE_TAP,
+        HEALBOT_DIVINE_FAVOR,
+        HEALBOT_DIVINE_ILLUMINATION,
+        HEALBOT_DIVINE_PLEA,
+        HEALBOT_DIVINE_SHIELD,
+        HEALBOT_RIGHTEOUS_DEFENSE,
+        HEALBOT_NATURE_SWIFTNESS,
+        HEALBOT_INNER_FOCUS,
+        HEALBOT_CALL_OF_THE_ELEMENTS,
         Nature_Curse = "Nature's Curse",
         Remove_Corruption = "Remove Corruption",
         Cenarion_Ward = "Cenarion Ward",
         Flourish = "Flourish",
         Seed_of_life_Bloom = "Bloom",
-    },
-    [HEALBOT_DRUID] = {
-        RemoveCurse = "Remove Curse",
-        Florish_buff = "Flourish",
     },
     [HEALBOT_CULTIST] = {
         Void_Shield = "Void Shield",
