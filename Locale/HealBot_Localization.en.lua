@@ -75,6 +75,23 @@ HEALBOT_CLASESS                          = {
     HEALBOT_BLOODMAGE,
     HEALBOT_HERO,
 }
+HEALBOT_HEALERS = {
+    HEALBOT_DRUID,
+    HEALBOT_PALADIN,
+    HEALBOT_PRIEST,
+    HEALBOT_SHAMAN,
+    HEALBOT_TINKER,
+    HEALBOT_VENOMANCER,
+    HEALBOT_WITCH_DOCTOR,
+    HEALBOT_SUNCLERIC,
+    HEALBOT_PRIMALIST,
+    HEALBOT_HERO,
+    HEALBOT_CULTIST,
+    HEALBOT_PYROMANCER,
+    HEALBOT_CHRONOMANCER,
+    HEALBOT_STARCALLER,
+    HEALBOT_BLOODMAGE
+}
 HEALBOT_SHADOW_PRISION                   = GetSpellInfo(5011055) or "Shadow Prision";
 HEALBOT_CURSE_OF_AGONY                   = GetSpellInfo(14868) or "Curse of Agony";
 HEALBOT_CORRUPTION                       = GetSpellInfo(25311) or "Corruption";
@@ -89,7 +106,7 @@ HEALBOT_CLASS_SPELLS                     = {
         HEALBOT_ABOLISH_POISON,
         HEALBOT_REVIVE,
         HEALBOT_REBIRTH,
-        Florish_buff = "Flourish",--i think this was for Bronzebeard realm.
+        Flourish = "Flourish",--i think this was for Bronzebeard realm.
     },
     [HEALBOT_PALADIN] = {
         HEALBOT_PURIFY,

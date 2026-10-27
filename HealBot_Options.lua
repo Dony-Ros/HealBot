@@ -382,7 +382,7 @@ local HealBot_Options_Class_HoTctlName_List = {
     [HEALBOT_CLASS_SPELLS[HEALBOT_PRIMALIST].Primal_Infusion] = HEALBOT_PRIMALIST,
     [HEALBOT_CLASS_SPELLS[HEALBOT_TINKER].Nanobot_Reconstruction] = HEALBOT_TINKER,
     [HEALBOT_CLASS_SPELLS[HEALBOT_TINKER].Nanobot_Barrier] = HEALBOT_TINKER,
-    [HEALBOT_CLASS_SPELLS[HEALBOT_DRUID].Florish_buff] = HEALBOT_DRUID,
+    [HEALBOT_CLASS_SPELLS[HEALBOT_DRUID].Flourish] = HEALBOT_DRUID,
 
 }
 local HealBot_Options_Classless_HoTctlName_List = {
@@ -621,7 +621,6 @@ local HealBot_Options_SelectHealSpellsCombo_List_V2 = {
         Flames_of_the_Apostate,
         Radiant_Flames,
         HEALBOT_CLASS_SPELLS[HEALBOT_HERO].Flourish,
-        HEALBOT_CLASS_SPELLS[HEALBOT_DRUID].Florish_buff,
         HEALBOT_CLASS_SPELLS[HEALBOT_HERO].Seed_of_life_Bloom,
         Healing_Rain,
         Leap_of_Faith,
@@ -1149,7 +1148,6 @@ local HealBot_CombosKeys_List = { "", "Shift", "Ctrl", "Alt", "Ctrl-Shift", "Alt
 local HB_combo_prefix = nil
 local SpellTxtE = nil
 local SpellTxtD = nil
-local SpellTxtB = nil
 local HB_button = nil
 local f = nil
 local HealBot_Options_CurrentPanel = 0;
@@ -4489,6 +4487,10 @@ function HealBot_Options_Class_HoTctlName_genList()
         HoTctlName_List[x] = nil;
     end
     if HealBot_PlayerClass_ER == HEALBOT_HERO then
+        for bName, class in pairs(HealBot_Options_Class_HoTctlName_List) do
+            HealBot_Options_Classless_HoTctlName_List[bName] = class;
+        end
+
         for bName, class in pairs(HealBot_Options_Classless_HoTctlName_List) do
             if class == "ALL" or HealBot_Options_StorePrev["FilterHoTctlName"] == class then
                 table.insert(HoTctlName_List, bName)
@@ -4748,111 +4750,57 @@ function HealBot_Options_EmergencyFilter_OnSelect(self)
 end
 
 function HealBot_Options_EmergencyFilter_Reset()
-    HealBot_EmergInc[HealBot_Class_En[HEALBOT_DRUID]] = 0;
-    HealBot_EmergInc[HealBot_Class_En[HEALBOT_HUNTER]] = 0;
-    HealBot_EmergInc[HealBot_Class_En[HEALBOT_MAGE]] = 0;
-    HealBot_EmergInc[HealBot_Class_En[HEALBOT_PALADIN]] = 0;
-    HealBot_EmergInc[HealBot_Class_En[HEALBOT_PRIEST]] = 0;
-    HealBot_EmergInc[HealBot_Class_En[HEALBOT_ROGUE]] = 0;
-    HealBot_EmergInc[HealBot_Class_En[HEALBOT_SHAMAN]] = 0;
-    HealBot_EmergInc[HealBot_Class_En[HEALBOT_WARLOCK]] = 0;
-    HealBot_EmergInc[HealBot_Class_En[HEALBOT_WARRIOR]] = 0;
-    HealBot_EmergInc[HealBot_Class_En[HEALBOT_DEATHKNIGHT]] = 0;
-    HealBot_EmergInc[HealBot_Class_En[HEALBOT_HERO]] = 0;
-    if Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 1 then
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_DRUID]] = 1;
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_HUNTER]] = 1;
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_MAGE]] = 1;
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_PALADIN]] = 1;
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_PRIEST]] = 1;
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_ROGUE]] = 1;
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_SHAMAN]] = 1;
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_WARLOCK]] = 1;
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_WARRIOR]] = 1;
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_DEATHKNIGHT]] = 1;
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_HERO]] = 1;
-    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 2 then
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_DRUID]] = 1;
-    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 3 then
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_HUNTER]] = 1;
-    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 4 then
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_MAGE]] = 1;
-    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 5 then
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_PALADIN]] = 1;
-    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 6 then
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_PRIEST]] = 1;
-    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 7 then
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_ROGUE]] = 1;
-    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 8 then
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_SHAMAN]] = 1;
-    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 9 then
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_WARLOCK]] = 1;
-    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 10 then
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_WARRIOR]] = 1;
-    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 11 then
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_DEATHKNIGHT]] = 1;
-    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 12 then
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_DRUID]] = HealBot_Config.EmergIncMelee[HEALBOT_DRUID];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_HUNTER]] = HealBot_Config.EmergIncMelee[HEALBOT_HUNTER];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_MAGE]] = HealBot_Config.EmergIncMelee[HEALBOT_MAGE];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_PALADIN]] = HealBot_Config.EmergIncMelee[HEALBOT_PALADIN];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_PRIEST]] = HealBot_Config.EmergIncMelee[HEALBOT_PRIEST];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_ROGUE]] = HealBot_Config.EmergIncMelee[HEALBOT_ROGUE];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_SHAMAN]] = HealBot_Config.EmergIncMelee[HEALBOT_SHAMAN];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_WARLOCK]] = HealBot_Config.EmergIncMelee[HEALBOT_WARLOCK];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_WARRIOR]] = HealBot_Config.EmergIncMelee[HEALBOT_WARRIOR];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_DEATHKNIGHT]] = HealBot_Config.EmergIncMelee[HEALBOT_DEATHKNIGHT];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_HERO]] = HealBot_Config.EmergIncMelee[HEALBOT_HERO];
-    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 13 then
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_DRUID]] = HealBot_Config.EmergIncRange[HEALBOT_DRUID];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_HUNTER]] = HealBot_Config.EmergIncRange[HEALBOT_HUNTER];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_MAGE]] = HealBot_Config.EmergIncRange[HEALBOT_MAGE];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_PALADIN]] = HealBot_Config.EmergIncRange[HEALBOT_PALADIN];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_PRIEST]] = HealBot_Config.EmergIncRange[HEALBOT_PRIEST];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_ROGUE]] = HealBot_Config.EmergIncRange[HEALBOT_ROGUE];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_SHAMAN]] = HealBot_Config.EmergIncRange[HEALBOT_SHAMAN];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_WARLOCK]] = HealBot_Config.EmergIncRange[HEALBOT_WARLOCK];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_WARRIOR]] = HealBot_Config.EmergIncRange[HEALBOT_WARRIOR];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_DEATHKNIGHT]] = HealBot_Config.EmergIncRange[HEALBOT_DEATHKNIGHT];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_HERO]] = HealBot_Config.EmergIncMelee[HEALBOT_HERO];
-    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 14 then
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_DRUID]] = HealBot_Config.EmergIncHealers[HEALBOT_DRUID];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_HUNTER]] = HealBot_Config.EmergIncHealers[HEALBOT_HUNTER];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_MAGE]] = HealBot_Config.EmergIncHealers[HEALBOT_MAGE];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_PALADIN]] = HealBot_Config.EmergIncHealers[HEALBOT_PALADIN];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_PRIEST]] = HealBot_Config.EmergIncHealers[HEALBOT_PRIEST];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_ROGUE]] = HealBot_Config.EmergIncHealers[HEALBOT_ROGUE];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_SHAMAN]] = HealBot_Config.EmergIncHealers[HEALBOT_SHAMAN];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_WARLOCK]] = HealBot_Config.EmergIncHealers[HEALBOT_WARLOCK];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_WARRIOR]] = HealBot_Config.EmergIncHealers[HEALBOT_WARRIOR];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_DEATHKNIGHT]] = HealBot_Config.EmergIncHealers[HEALBOT_DEATHKNIGHT];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_HERO]] = HealBot_Config.EmergIncMelee[HEALBOT_HERO];
-    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 15 then
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_DRUID]] = HealBot_Config.EmergIncCustom[HEALBOT_DRUID];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_HUNTER]] = HealBot_Config.EmergIncCustom[HEALBOT_HUNTER];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_MAGE]] = HealBot_Config.EmergIncCustom[HEALBOT_MAGE];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_PALADIN]] = HealBot_Config.EmergIncCustom[HEALBOT_PALADIN];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_PRIEST]] = HealBot_Config.EmergIncCustom[HEALBOT_PRIEST];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_ROGUE]] = HealBot_Config.EmergIncCustom[HEALBOT_ROGUE];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_SHAMAN]] = HealBot_Config.EmergIncCustom[HEALBOT_SHAMAN];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_WARLOCK]] = HealBot_Config.EmergIncCustom[HEALBOT_WARLOCK];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_WARRIOR]] = HealBot_Config.EmergIncCustom[HEALBOT_WARRIOR];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_DEATHKNIGHT]] = HealBot_Config.EmergIncCustom[HEALBOT_DEATHKNIGHT];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_HERO]] = HealBot_Config.EmergIncMelee[HEALBOT_HERO];
-    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 16 then --a
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_DRUID]] = HealBot_Config.EmergIncCustom[HEALBOT_DRUID];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_HUNTER]] = HealBot_Config.EmergIncCustom[HEALBOT_HUNTER];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_MAGE]] = HealBot_Config.EmergIncCustom[HEALBOT_MAGE];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_PALADIN]] = HealBot_Config.EmergIncCustom[HEALBOT_PALADIN];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_PRIEST]] = HealBot_Config.EmergIncCustom[HEALBOT_PRIEST];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_ROGUE]] = HealBot_Config.EmergIncCustom[HEALBOT_ROGUE];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_SHAMAN]] = HealBot_Config.EmergIncCustom[HEALBOT_SHAMAN];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_WARLOCK]] = HealBot_Config.EmergIncCustom[HEALBOT_WARLOCK];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_WARRIOR]] = HealBot_Config.EmergIncCustom[HEALBOT_WARRIOR];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_DEATHKNIGHT]] = HealBot_Config.EmergIncCustom[HEALBOT_DEATHKNIGHT];
-        HealBot_EmergInc[HealBot_Class_En[HEALBOT_HERO]] = HealBot_Config.EmergIncMelee[HEALBOT_HERO];
+    if not HealBot_EmergInc[HealBot_PlayerClass_ER] then
+        HealBot_EmergInc[HealBot_PlayerClass_ER] = {}
     end
-
+    for _, value in ipairs(HEALBOT_CLASESS) do
+        HealBot_EmergInc[HealBot_PlayerClass_ER][value] = 0;
+    end
+    if Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 1 then
+        for _, value in ipairs(HEALBOT_CLASESS) do
+            HealBot_EmergInc[HealBot_PlayerClass_ER][value] = 1;
+        end
+    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 2 then
+        HealBot_EmergInc[HealBot_PlayerClass_ER[HEALBOT_DRUID]] = 1;
+    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 3 then
+        HealBot_EmergInc[HealBot_PlayerClass_ER[HEALBOT_HUNTER]] = 1;
+    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 4 then
+        HealBot_EmergInc[HealBot_PlayerClass_ER[HEALBOT_MAGE]] = 1;
+    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 5 then
+        HealBot_EmergInc[HealBot_PlayerClass_ER[HEALBOT_PALADIN]] = 1;
+    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 6 then
+        HealBot_EmergInc[HealBot_PlayerClass_ER[HEALBOT_PRIEST]] = 1;
+    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 7 then
+        HealBot_EmergInc[HealBot_PlayerClass_ER[HEALBOT_ROGUE]] = 1;
+    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 8 then
+        HealBot_EmergInc[HealBot_PlayerClass_ER[HEALBOT_SHAMAN]] = 1;
+    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 9 then
+        HealBot_EmergInc[HealBot_PlayerClass_ER[HEALBOT_WARLOCK]] = 1;
+    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 10 then
+        HealBot_EmergInc[HealBot_PlayerClass_ER[HEALBOT_WARRIOR]] = 1;
+    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 11 then
+        HealBot_EmergInc[HealBot_PlayerClass_ER[HEALBOT_DEATHKNIGHT]] = 1;
+    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 12 then
+        for _, value in ipairs(HEALBOT_CLASESS) do
+            HealBot_EmergInc[HealBot_PlayerClass_ER][value] = HealBot_Config.EmergIncMelee[value];
+        end
+    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 13 then
+        for _, value in ipairs(HEALBOT_CLASESS) do
+            HealBot_EmergInc[HealBot_PlayerClass_ER][value] = HealBot_Config.EmergIncRange[value];
+        end
+    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 14 then
+        for _, value in ipairs(HEALBOT_CLASESS) do
+            HealBot_EmergInc[HealBot_PlayerClass_ER][value] = HealBot_Config.EmergIncHealers[value];
+        end
+    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 15 then
+        for _, value in ipairs(HEALBOT_CLASESS) do
+            HealBot_EmergInc[HealBot_PlayerClass_ER][value] = HealBot_Config.EmergIncCustom[value];
+        end
+    elseif Healbot_Config_Skins.EmergIncMonitor[Healbot_Config_Skins.Current_Skin] == 16 then --a
+        for _, value in ipairs(HEALBOT_CLASESS) do
+            HealBot_EmergInc[HealBot_PlayerClass_ER][value] = HealBot_Config.EmergIncCustom[value];
+        end
+    end
     if Delay_RecalcParty == 0 then
         Delay_RecalcParty = 1;
     end
@@ -9081,6 +9029,7 @@ function HealBot_Options_ShowSkinsPanel(frameName, barName)
     g:SetStatusBarColor(1, 0.32, 0.32)
     g = _G[barName .. "f"]
     g:SetTextColor(1, 1, 1, 1)
+
     HealBot_Options_StorePrev["CurrentSkinsPanel"] = frameName
     HealBot_Options_StorePrev["CurrentbarName"] = barName
 end

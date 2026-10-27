@@ -1284,7 +1284,7 @@ function HealBot_Panel_PanelChanged(showHeaders)
                         if UnitExists(xUnit) and xGUID then
                             if HealBot_TrackNames[xGUID] then
                                 class, classEN = UnitClass(xUnit)
-                                if Healbot_Config_Skins.ExtraIncGroup[Healbot_Config_Skins.Current_Skin][subgroup] and class and HealBot_EmergInc[strsub(classEN, 1, 4)] == 1 then
+                                if Healbot_Config_Skins.ExtraIncGroup[Healbot_Config_Skins.Current_Skin][subgroup] and class and HealBot_EmergInc[classEN] == 1 then
                                     if Healbot_Config_Skins.ExtraOrder[Healbot_Config_Skins.Current_Skin] == 1 then
                                         order[xUnit] = uName;
                                     elseif Healbot_Config_Skins.ExtraOrder[Healbot_Config_Skins.Current_Skin] == 2 then
@@ -1334,7 +1334,7 @@ function HealBot_Panel_PanelChanged(showHeaders)
                         uName = UnitName(xUnit);
                         if UnitExists(xUnit) then
                             if not HealBot_TrackNames[xGUID] then
-                                if Healbot_Config_Skins.ExtraIncGroup[Healbot_Config_Skins.Current_Skin][subgroup] and HealBot_EmergInc[strsub(classEN, 1, 4)] == 1 then
+                                if Healbot_Config_Skins.ExtraIncGroup[Healbot_Config_Skins.Current_Skin][subgroup] and HealBot_EmergInc[classEN] == 1 then
                                     if Healbot_Config_Skins.ExtraOrder[Healbot_Config_Skins.Current_Skin] == 1 then
                                         order[xUnit] = uName;
                                     elseif Healbot_Config_Skins.ExtraOrder[Healbot_Config_Skins.Current_Skin] == 2 then
@@ -1583,7 +1583,6 @@ function HealBot_Panel_PanelChanged(showHeaders)
             end
         end
 
-
         if Healbot_Config_Skins.VehicleHeals[Healbot_Config_Skins.Current_Skin] == 1 and i < 53 then
             for x, _ in pairs(HealBot_CheckedTargets) do
                 HealBot_CheckedTargets[x] = nil;
@@ -1658,8 +1657,6 @@ function HealBot_Panel_PanelChanged(showHeaders)
                 if HealBot_BottomAnchors then HeaderPos[i + 1] = HEALBOT_VEHICLE end
             end
         end
-
-
 
         if Healbot_Config_Skins.TargetHeals[Healbot_Config_Skins.Current_Skin] == 1 and not HealBot_IsFighting then
             xUnit = "target";

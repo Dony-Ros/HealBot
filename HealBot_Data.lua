@@ -674,7 +674,6 @@ HealBot_GlobalsDefaults = {
             [Flames_of_the_Apostate] = 2,
             [Radiant_Flames] = 2,
             [Cryotherapist] = 2,
-            [HEALBOT_CLASS_SPELLS[HEALBOT_DRUID].Florish_buff] = 2,
             [HEALBOT_CLASS_SPELLS[HEALBOT_HERO].Flourish] = 2,
             [Potion_Toss] = 2,
             [Mending_Tide] = 2,
@@ -754,7 +753,7 @@ HealBot_GlobalsDefaults = {
             [HEALBOT_TIDAL_WAVES] = 1,
             [HEALBOT_TIDAL_FORCE] = 1,
             [HEALBOT_NATURE_SWIFTNESS] = 2,
-            [HEALBOT_CLASS_SPELLS[HEALBOT_DRUID].Florish_buff] = 2,
+            [HEALBOT_CLASS_SPELLS[HEALBOT_DRUID].Flourish] = 2,
 
         },
         [HEALBOT_HUNTER] = {

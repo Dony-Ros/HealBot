@@ -64,7 +64,6 @@ local hbHoTinterval = {
     [HEALBOT_WILD_GROWTH] = 1,
     [HEALBOT_RIPTIDE] = 3,
     [Efflorescence] = 2,
-    [HEALBOT_CLASS_SPELLS[HEALBOT_DRUID].Florish_buff] = 3,
     [HEALBOT_CLASS_SPELLS[HEALBOT_HERO].Flourish] = 3,
     [HEALBOT_CLASS_SPELLS[HEALBOT_HERO].Cenarion_Ward] = 1,
 
@@ -5763,16 +5762,13 @@ function HealBot_Update_Skins()
                 end
             end
             if not Healbot_Config_Skins.ExtraIncGroup[Healbot_Config_Skins.Skins[x]] then
-                Healbot_Config_Skins.ExtraIncGroup[Healbot_Config_Skins.Skins[x]] = {
-                    [1] = true,
-                    [2] = true,
-                    [3] = true,
-                    [4] = true,
-                    [5] = true,
-                    [6] = true,
-                    [7] = true,
-                    [8] = true
-                }
+                for index, _ in ipairs(HEALBOT_CLASESS) do
+                    Healbot_Config_Skins.ExtraIncGroup[Healbot_Config_Skins.Skins[x]] = 
+                    {
+                        [index] = true
+                    }
+                end
+                
             end
             if not Healbot_Config_Skins.GroupsPerCol[Healbot_Config_Skins.Skins[x]] then Healbot_Config_Skins.GroupsPerCol[Healbot_Config_Skins.Skins[x]] = 0 end
             if not Healbot_Config_Skins.ActionLocked[Healbot_Config_Skins.Skins[x]] then
